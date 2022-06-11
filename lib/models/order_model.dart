@@ -35,16 +35,16 @@ class Order {
     );
   }
 
+  final List<Address?>? address;
   final String? deliveryDate;
   final String? deliveryTime;
-  final List<Address?>? address;
+  final String? name;
   final String? orderDate;
   final String? orderId;
   final String? orderTime;
   final String? prescriptionURL;
   final String? userId;
   final String? vendorId;
-  final String? name;
 
   @override
   bool operator ==(Object other) {
