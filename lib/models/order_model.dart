@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:package_custom/models/address_model.dart';
+import 'package:healthshared/models/address_model.dart';
 
 class Order {
   Order({
