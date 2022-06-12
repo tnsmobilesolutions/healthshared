@@ -1,37 +1,40 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:healthshared/models/address_model.dart';
 
 class Order {
   Order({
+    this.address,
     this.deliveryDate,
     this.deliveryTime,
-    this.address,
+    this.name,
+    this.paymentStatus,
     this.orderDate,
     this.orderId,
     this.orderTime,
     this.prescriptionURL,
     this.userId,
     this.vendorId,
-    this.name,
   });
 
   factory Order.fromJson(String source) => Order.fromMap(json.decode(source));
 
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      deliveryDate: map['deliveryDate'],
-      deliveryTime: map['deliveryTime'],
       address: map['address'] != null
           ? List<Address?>.from(map['address']?.map((x) => Address?.fromMap(x)))
           : null,
+      deliveryDate: map['deliveryDate'],
+      deliveryTime: map['deliveryTime'],
+      name: map['name'],
+      paymentStatus: map['paymentStatus'],
       orderDate: map['orderDate'],
       orderId: map['orderId'],
       orderTime: map['orderTime'],
       prescriptionURL: map['prescriptionURL'],
       userId: map['userId'],
       vendorId: map['vendorId'],
-      name: map['name'],
     );
   }
 
@@ -39,6 +42,7 @@ class Order {
   final String? deliveryDate;
   final String? deliveryTime;
   final String? name;
+  final String? paymentStatus;
   final String? orderDate;
   final String? orderId;
   final String? orderTime;
@@ -51,75 +55,80 @@ class Order {
     if (identical(this, other)) return true;
 
     return other is Order &&
+        listEquals(other.address, address) &&
         other.deliveryDate == deliveryDate &&
         other.deliveryTime == deliveryTime &&
-        listEquals(other.address, address) &&
+        other.name == name &&
+        other.paymentStatus == paymentStatus &&
         other.orderDate == orderDate &&
         other.orderId == orderId &&
         other.orderTime == orderTime &&
         other.prescriptionURL == prescriptionURL &&
         other.userId == userId &&
-        other.vendorId == vendorId &&
-        other.name == name;
+        other.vendorId == vendorId;
   }
 
   @override
   int get hashCode {
-    return deliveryDate.hashCode ^
+    return address.hashCode ^
+        deliveryDate.hashCode ^
         deliveryTime.hashCode ^
-        address.hashCode ^
+        name.hashCode ^
+        paymentStatus.hashCode ^
         orderDate.hashCode ^
         orderId.hashCode ^
         orderTime.hashCode ^
         prescriptionURL.hashCode ^
         userId.hashCode ^
-        vendorId.hashCode ^
-        name.hashCode;
+        vendorId.hashCode;
   }
 
   @override
   String toString() {
-    return 'Order(deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, address: $address, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, name: $name)';
+    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
   }
 
   Order copyWith({
+    List<Address?>? address,
     String? deliveryDate,
     String? deliveryTime,
-    List<Address?>? address,
+    String? name,
+    String? paymentStatus,
     String? orderDate,
     String? orderId,
     String? orderTime,
     String? prescriptionURL,
     String? userId,
     String? vendorId,
-    String? name,
   }) {
     return Order(
+      address: address ?? this.address,
       deliveryDate: deliveryDate ?? this.deliveryDate,
       deliveryTime: deliveryTime ?? this.deliveryTime,
-      address: address ?? this.address,
+      name: name ?? this.name,
+      paymentStatus: paymentStatus ?? this.paymentStatus,
       orderDate: orderDate ?? this.orderDate,
       orderId: orderId ?? this.orderId,
       orderTime: orderTime ?? this.orderTime,
       prescriptionURL: prescriptionURL ?? this.prescriptionURL,
       userId: userId ?? this.userId,
       vendorId: vendorId ?? this.vendorId,
-      name: name ?? this.name,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'address': address?.map((x) => x?.toMap()).toList(),
       'deliveryDate': deliveryDate,
       'deliveryTime': deliveryTime,
-      'address': address?.map((x) => x?.toMap()).toList(),
+      'name': name,
+      'paymentStatus': paymentStatus,
       'orderDate': orderDate,
       'orderId': orderId,
       'orderTime': orderTime,
       'prescriptionURL': prescriptionURL,
       'userId': userId,
       'vendorId': vendorId,
-      'name': name,
     };
   }
 
