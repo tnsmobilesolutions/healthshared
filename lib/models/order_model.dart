@@ -12,7 +12,7 @@ class Order {
     this.orderDate,
     this.orderId,
     this.orderTime,
-    this.prescriptionURL,
+    required this.prescriptionURL,
     this.userId,
     this.vendorId,
   });
@@ -29,7 +29,7 @@ class Order {
       orderDate: map['orderDate'],
       orderId: map['orderId'],
       orderTime: map['orderTime'],
-      prescriptionURL: map['prescriptionURL'],
+      prescriptionURL: map['prescriptionURL'] ?? '',
       userId: map['userId'],
       vendorId: map['vendorId'],
     );
@@ -43,7 +43,7 @@ class Order {
   final String? orderDate;
   final String? orderId;
   final String? orderTime;
-  final String? prescriptionURL;
+  final String prescriptionURL;
   final String? userId;
   final String? vendorId;
 
