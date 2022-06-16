@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:healthshared/models/address_model.dart';
 
 class Order {
@@ -22,9 +21,7 @@ class Order {
 
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      address: map['address'] != null
-          ? List<Address?>.from(map['address']?.map((x) => Address?.fromMap(x)))
-          : null,
+      address: map['address'] != null ? Address.fromMap(map['address']) : null,
       deliveryDate: map['deliveryDate'],
       deliveryTime: map['deliveryTime'],
       name: map['name'],
@@ -38,7 +35,7 @@ class Order {
     );
   }
 
-  final List<Address?>? address;
+  final Address? address;
   final String? deliveryDate;
   final String? deliveryTime;
   final String? name;
@@ -55,7 +52,7 @@ class Order {
     if (identical(this, other)) return true;
 
     return other is Order &&
-        listEquals(other.address, address) &&
+        other.address == address &&
         other.deliveryDate == deliveryDate &&
         other.deliveryTime == deliveryTime &&
         other.name == name &&
@@ -89,7 +86,7 @@ class Order {
   }
 
   Order copyWith({
-    List<Address?>? address,
+    Address? address,
     String? deliveryDate,
     String? deliveryTime,
     String? name,
@@ -118,7 +115,7 @@ class Order {
 
   Map<String, dynamic> toMap() {
     return {
-      'address': address?.map((x) => x?.toMap()).toList(),
+      'address': address?.toMap(),
       'deliveryDate': deliveryDate,
       'deliveryTime': deliveryTime,
       'name': name,
