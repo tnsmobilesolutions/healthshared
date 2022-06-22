@@ -9,6 +9,7 @@ class Order {
     this.deliveryTime,
     this.name,
     this.paymentStatus,
+    this.orderStatus,
     this.orderDate,
     this.orderId,
     this.orderTime,
@@ -26,6 +27,7 @@ class Order {
       deliveryTime: map['deliveryTime'],
       name: map['name'],
       paymentStatus: map['paymentStatus'],
+      orderStatus: map['orderStatus'],
       orderDate: map['orderDate'],
       orderId: map['orderId'],
       orderTime: map['orderTime'],
@@ -40,6 +42,7 @@ class Order {
   final String? deliveryTime;
   final String? name;
   final String? paymentStatus;
+  final String? orderStatus;
   final String? orderDate;
   final String? orderId;
   final String? orderTime;
@@ -57,6 +60,7 @@ class Order {
         other.deliveryTime == deliveryTime &&
         other.name == name &&
         other.paymentStatus == paymentStatus &&
+        other.orderStatus == orderStatus &&
         other.orderDate == orderDate &&
         other.orderId == orderId &&
         other.orderTime == orderTime &&
@@ -72,6 +76,7 @@ class Order {
         deliveryTime.hashCode ^
         name.hashCode ^
         paymentStatus.hashCode ^
+        orderStatus.hashCode ^
         orderDate.hashCode ^
         orderId.hashCode ^
         orderTime.hashCode ^
@@ -82,7 +87,7 @@ class Order {
 
   @override
   String toString() {
-    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
+    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
   }
 
   Order copyWith({
@@ -91,6 +96,7 @@ class Order {
     String? deliveryTime,
     String? name,
     String? paymentStatus,
+    String? orderStatus,
     String? orderDate,
     String? orderId,
     String? orderTime,
@@ -104,6 +110,7 @@ class Order {
       deliveryTime: deliveryTime ?? this.deliveryTime,
       name: name ?? this.name,
       paymentStatus: paymentStatus ?? this.paymentStatus,
+      orderStatus: orderStatus ?? this.orderStatus,
       orderDate: orderDate ?? this.orderDate,
       orderId: orderId ?? this.orderId,
       orderTime: orderTime ?? this.orderTime,
@@ -120,6 +127,7 @@ class Order {
       'deliveryTime': deliveryTime,
       'name': name,
       'paymentStatus': paymentStatus,
+      'orderStatus': orderStatus,
       'orderDate': orderDate,
       'orderId': orderId,
       'orderTime': orderTime,
