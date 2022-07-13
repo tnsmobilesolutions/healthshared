@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:healthshared/models/address_model.dart';
 
-class Order {
-  Order({
+class Order extends Equatable {
+  const Order({
     this.address,
     this.deliveryDate,
     this.deliveryTime,
@@ -138,4 +139,20 @@ class Order {
   }
 
   String toJson() => json.encode(toMap());
+
+  @override
+  List<Object?> get props => [
+        address,
+        deliveryDate,
+        deliveryTime,
+        name,
+        paymentStatus,
+        orderStatus,
+        orderDate,
+        orderId,
+        orderTime,
+        prescriptionURL,
+        userId,
+        vendorId,
+      ];
 }

@@ -1,7 +1,9 @@
 import 'dart:convert';
 
-class Address {
-  Address({
+import 'package:equatable/equatable.dart';
+
+class Address extends Equatable {
+  const Address({
     this.patientName,
     this.addressId,
     this.addressLine1,
@@ -133,4 +135,17 @@ class Address {
   }
 
   String toJson() => json.encode(toMap());
+
+  @override
+  List<Object?> get props => [
+        addressId,
+        addressLine1,
+        addressLine2,
+        addressType,
+        city,
+        patientName,
+        phoneNumber,
+        pincode,
+        state,
+      ];
 }
