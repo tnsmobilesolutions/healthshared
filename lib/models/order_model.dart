@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+
 import 'package:healthshared/models/address_model.dart';
 
 class Order extends Equatable {
@@ -14,6 +15,7 @@ class Order extends Equatable {
     this.orderDate,
     this.orderId,
     this.orderTime,
+    this.cancellationNote,
     required this.prescriptionURL,
     this.userId,
     this.vendorId,
@@ -32,6 +34,7 @@ class Order extends Equatable {
       orderDate: map['orderDate'],
       orderId: map['orderId'],
       orderTime: map['orderTime'],
+      cancellationNote: map['cancellationNote'],
       prescriptionURL: map['prescriptionURL'] ?? '',
       userId: map['userId'],
       vendorId: map['vendorId'],
@@ -47,6 +50,7 @@ class Order extends Equatable {
   final String? orderDate;
   final String? orderId;
   final String? orderTime;
+  final String? cancellationNote;
   final String prescriptionURL;
   final String? userId;
   final String? vendorId;
@@ -88,7 +92,7 @@ class Order extends Equatable {
 
   @override
   String toString() {
-    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
+    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
   }
 
   Order copyWith({
@@ -101,6 +105,7 @@ class Order extends Equatable {
     String? orderDate,
     String? orderId,
     String? orderTime,
+    String? cancellationNote,
     String? prescriptionURL,
     String? userId,
     String? vendorId,
@@ -115,6 +120,7 @@ class Order extends Equatable {
       orderDate: orderDate ?? this.orderDate,
       orderId: orderId ?? this.orderId,
       orderTime: orderTime ?? this.orderTime,
+      cancellationNote: cancellationNote ?? this.cancellationNote,
       prescriptionURL: prescriptionURL ?? this.prescriptionURL,
       userId: userId ?? this.userId,
       vendorId: vendorId ?? this.vendorId,
@@ -132,6 +138,7 @@ class Order extends Equatable {
       'orderDate': orderDate,
       'orderId': orderId,
       'orderTime': orderTime,
+      'cancellationNote': cancellationNote,
       'prescriptionURL': prescriptionURL,
       'userId': userId,
       'vendorId': vendorId,
@@ -141,18 +148,21 @@ class Order extends Equatable {
   String toJson() => json.encode(toMap());
 
   @override
-  List<Object?> get props => [
-        address,
-        deliveryDate,
-        deliveryTime,
-        name,
-        paymentStatus,
-        orderStatus,
-        orderDate,
-        orderId,
-        orderTime,
-        prescriptionURL,
-        userId,
-        vendorId,
-      ];
+  List<dynamic> get props {
+    return [
+      address,
+      deliveryDate,
+      deliveryTime,
+      name,
+      paymentStatus,
+      orderStatus,
+      orderDate,
+      orderId,
+      orderTime,
+      cancellationNote,
+      prescriptionURL,
+      userId,
+      vendorId,
+    ];
+  }
 }
