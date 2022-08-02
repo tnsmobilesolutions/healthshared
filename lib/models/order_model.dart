@@ -9,6 +9,9 @@ class Order extends Equatable {
     this.address,
     this.deliveryDate,
     this.deliveryTime,
+    this.esimatedDeliveryDate,
+    this.estimatedDeliveryTime,
+    this.totalAmount,
     this.name,
     this.paymentStatus,
     this.orderStatus,
@@ -28,6 +31,9 @@ class Order extends Equatable {
       address: map['address'] != null ? Address.fromMap(map['address']) : null,
       deliveryDate: map['deliveryDate'],
       deliveryTime: map['deliveryTime'],
+      esimatedDeliveryDate: map['esimatedDeliveryDate'],
+      estimatedDeliveryTime: map['estimatedDeliveryTime'],
+      totalAmount: map['totalAmount'],
       name: map['name'],
       paymentStatus: map['paymentStatus'],
       orderStatus: map['orderStatus'],
@@ -35,7 +41,7 @@ class Order extends Equatable {
       orderId: map['orderId'],
       orderTime: map['orderTime'],
       cancellationNote: map['cancellationNote'],
-      prescriptionURL: map['prescriptionURL'] ?? '',
+      prescriptionURL: map['prescriptionURL'],
       userId: map['userId'],
       vendorId: map['vendorId'],
     );
@@ -44,6 +50,9 @@ class Order extends Equatable {
   final Address? address;
   final String? deliveryDate;
   final String? deliveryTime;
+  final String? esimatedDeliveryDate;
+  final String? estimatedDeliveryTime;
+  final String? totalAmount;
   final String? name;
   final String? paymentStatus;
   final String? orderStatus;
@@ -51,7 +60,7 @@ class Order extends Equatable {
   final String? orderId;
   final String? orderTime;
   final String? cancellationNote;
-  final String prescriptionURL;
+  final String? prescriptionURL;
   final String? userId;
   final String? vendorId;
 
@@ -92,13 +101,16 @@ class Order extends Equatable {
 
   @override
   String toString() {
-    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
+    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, totalAmount: $totalAmount, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
   }
 
   Order copyWith({
     Address? address,
     String? deliveryDate,
     String? deliveryTime,
+    String? esimatedDeliveryDate,
+    String? estimatedDeliveryTime,
+    String? totalAmount,
     String? name,
     String? paymentStatus,
     String? orderStatus,
@@ -114,6 +126,10 @@ class Order extends Equatable {
       address: address ?? this.address,
       deliveryDate: deliveryDate ?? this.deliveryDate,
       deliveryTime: deliveryTime ?? this.deliveryTime,
+      esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
+      estimatedDeliveryTime:
+          estimatedDeliveryTime ?? this.estimatedDeliveryTime,
+      totalAmount: totalAmount ?? this.totalAmount,
       name: name ?? this.name,
       paymentStatus: paymentStatus ?? this.paymentStatus,
       orderStatus: orderStatus ?? this.orderStatus,
@@ -132,6 +148,9 @@ class Order extends Equatable {
       'address': address?.toMap(),
       'deliveryDate': deliveryDate,
       'deliveryTime': deliveryTime,
+      'esimatedDeliveryDate': esimatedDeliveryDate,
+      'estimatedDeliveryTime': estimatedDeliveryTime,
+      'totalAmount': totalAmount,
       'name': name,
       'paymentStatus': paymentStatus,
       'orderStatus': orderStatus,
@@ -148,21 +167,24 @@ class Order extends Equatable {
   String toJson() => json.encode(toMap());
 
   @override
-  List<dynamic> get props {
+  List<Object> get props {
     return [
-      address,
-      deliveryDate,
-      deliveryTime,
-      name,
-      paymentStatus,
-      orderStatus,
-      orderDate,
-      orderId,
-      orderTime,
-      cancellationNote,
-      prescriptionURL,
-      userId,
-      vendorId,
+      // address,
+      // deliveryDate,
+      // deliveryTime,
+      // esimatedDeliveryDate,
+      // estimatedDeliveryTime,
+      // totalAmount,
+      // name,
+      // paymentStatus,
+      // orderStatus,
+      // orderDate,
+      // orderId,
+      // orderTime,
+      // cancellationNote,
+      // prescriptionURL,
+      // userId,
+      // vendorId,
     ];
   }
 }
