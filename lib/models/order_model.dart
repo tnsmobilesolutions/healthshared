@@ -11,7 +11,9 @@ class Order extends Equatable {
     this.deliveryTime,
     this.esimatedDeliveryDate,
     this.estimatedDeliveryTime,
-    this.totalAmount,
+    this.billAmount,
+    this.discount,
+    this.netPayable,
     this.name,
     this.paymentStatus,
     this.orderStatus,
@@ -33,7 +35,9 @@ class Order extends Equatable {
       deliveryTime: map['deliveryTime'],
       esimatedDeliveryDate: map['esimatedDeliveryDate'],
       estimatedDeliveryTime: map['estimatedDeliveryTime'],
-      totalAmount: map['totalAmount'],
+      billAmount: map['billAmount'],
+      discount: map['discount'],
+      netPayable: map['netPayable'],
       name: map['name'],
       paymentStatus: map['paymentStatus'],
       orderStatus: map['orderStatus'],
@@ -52,7 +56,9 @@ class Order extends Equatable {
   final String? deliveryTime;
   final String? esimatedDeliveryDate;
   final String? estimatedDeliveryTime;
-  final String? totalAmount;
+  final String? billAmount;
+  final String? discount;
+  final String? netPayable;
   final String? name;
   final String? paymentStatus;
   final String? orderStatus;
@@ -101,7 +107,7 @@ class Order extends Equatable {
 
   @override
   String toString() {
-    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, totalAmount: $totalAmount, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
+    return 'Order(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId)';
   }
 
   Order copyWith({
@@ -110,7 +116,9 @@ class Order extends Equatable {
     String? deliveryTime,
     String? esimatedDeliveryDate,
     String? estimatedDeliveryTime,
-    String? totalAmount,
+    String? billAmount,
+    String? discount,
+    String? netPayable,
     String? name,
     String? paymentStatus,
     String? orderStatus,
@@ -129,7 +137,9 @@ class Order extends Equatable {
       esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
       estimatedDeliveryTime:
           estimatedDeliveryTime ?? this.estimatedDeliveryTime,
-      totalAmount: totalAmount ?? this.totalAmount,
+      billAmount: billAmount ?? this.billAmount,
+      discount: discount ?? this.discount,
+      netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
       paymentStatus: paymentStatus ?? this.paymentStatus,
       orderStatus: orderStatus ?? this.orderStatus,
@@ -150,7 +160,9 @@ class Order extends Equatable {
       'deliveryTime': deliveryTime,
       'esimatedDeliveryDate': esimatedDeliveryDate,
       'estimatedDeliveryTime': estimatedDeliveryTime,
-      'totalAmount': totalAmount,
+      'billAmount': billAmount,
+      'discount': discount,
+      'netPayable': netPayable,
       'name': name,
       'paymentStatus': paymentStatus,
       'orderStatus': orderStatus,
@@ -174,7 +186,9 @@ class Order extends Equatable {
       // deliveryTime,
       // esimatedDeliveryDate,
       // estimatedDeliveryTime,
-      // totalAmount,
+      // billAmount,
+      // discount,
+      // netPayable,
       // name,
       // paymentStatus,
       // orderStatus,
