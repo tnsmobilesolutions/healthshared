@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Slot extends Equatable {
+  final String? eventTitle;
   final String? doctorId;
   final String? slotId;
   final String? doctorName;
@@ -15,6 +16,7 @@ class Slot extends Equatable {
   final bool? isAvailable;
   final bool? isBooked;
   Slot({
+    this.eventTitle,
     this.doctorId,
     this.slotId,
     this.doctorName,
@@ -27,6 +29,7 @@ class Slot extends Equatable {
   });
 
   Slot copyWith({
+    String? eventTitle,
     String? doctorId,
     String? slotId,
     String? doctorName,
@@ -38,6 +41,7 @@ class Slot extends Equatable {
     bool? isBooked,
   }) {
     return Slot(
+      eventTitle: eventTitle ?? this.eventTitle,
       doctorId: doctorId ?? this.doctorId,
       slotId: slotId ?? this.slotId,
       doctorName: doctorName ?? this.doctorName,
@@ -52,6 +56,7 @@ class Slot extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'eventTitle': eventTitle,
       'doctorId': doctorId,
       'slotId': slotId,
       'doctorName': doctorName,
@@ -66,6 +71,7 @@ class Slot extends Equatable {
 
   factory Slot.fromMap(Map<String, dynamic> map) {
     return Slot(
+      eventTitle: map['eventTitle'],
       doctorId: map['doctorId'],
       slotId: map['slotId'],
       doctorName: map['doctorName'],
@@ -84,12 +90,13 @@ class Slot extends Equatable {
 
   @override
   String toString() {
-    return 'Slot(doctorId: $doctorId, slotId: $slotId, doctorName: $doctorName, doctorAddress: $doctorAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount, isAvailable: $isAvailable, isBooked: $isBooked)';
+    return 'Slot(eventTitle: $eventTitle, doctorId: $doctorId, slotId: $slotId, doctorName: $doctorName, doctorAddress: $doctorAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount, isAvailable: $isAvailable, isBooked: $isBooked)';
   }
 
   @override
   List<Object> get props {
     return [
+      // eventTitle,
       // doctorId,
       // slotId,
       // doctorName,
