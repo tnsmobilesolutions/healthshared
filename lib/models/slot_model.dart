@@ -5,12 +5,14 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Slot extends Equatable {
+  final String? slotId;
   final String? docName;
   final String? docAddress;
   final String? slotdate;
   final String? slotTime;
   final int? availableSlotCount;
   Slot({
+    this.slotId,
     this.docName,
     this.docAddress,
     this.slotdate,
@@ -19,6 +21,7 @@ class Slot extends Equatable {
   });
 
   Slot copyWith({
+    String? slotId,
     String? docName,
     String? docAddress,
     String? slotdate,
@@ -26,6 +29,7 @@ class Slot extends Equatable {
     int? availableSlotCount,
   }) {
     return Slot(
+      slotId: slotId ?? this.slotId,
       docName: docName ?? this.docName,
       docAddress: docAddress ?? this.docAddress,
       slotdate: slotdate ?? this.slotdate,
@@ -36,6 +40,7 @@ class Slot extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'slotId': slotId,
       'docName': docName,
       'docAddress': docAddress,
       'slotdate': slotdate,
@@ -46,6 +51,7 @@ class Slot extends Equatable {
 
   factory Slot.fromMap(Map<String, dynamic> map) {
     return Slot(
+      slotId: map['slotId'],
       docName: map['docName'],
       docAddress: map['docAddress'],
       slotdate: map['slotdate'],
@@ -60,12 +66,13 @@ class Slot extends Equatable {
 
   @override
   String toString() {
-    return 'Slot(docName: $docName, docAddress: $docAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount)';
+    return 'Slot(slotId: $slotId, docName: $docName, docAddress: $docAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount)';
   }
 
   @override
   List<Object> get props {
     return [
+      // slotId,
       // docName,
       // docAddress,
       // slotdate,
