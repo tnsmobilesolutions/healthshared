@@ -5,58 +5,76 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Slot extends Equatable {
+  final String? doctorId;
   final String? slotId;
-  final String? docName;
-  final String? docAddress;
+  final String? doctorName;
+  final String? doctorAddress;
   final String? slotdate;
   final String? slotTime;
   final int? availableSlotCount;
+  final bool? isAvailable;
+  final bool? isBooked;
   Slot({
+    this.doctorId,
     this.slotId,
-    this.docName,
-    this.docAddress,
+    this.doctorName,
+    this.doctorAddress,
     this.slotdate,
     this.slotTime,
     this.availableSlotCount,
+    this.isAvailable,
+    this.isBooked,
   });
 
   Slot copyWith({
+    String? doctorId,
     String? slotId,
-    String? docName,
-    String? docAddress,
+    String? doctorName,
+    String? doctorAddress,
     String? slotdate,
     String? slotTime,
     int? availableSlotCount,
+    bool? isAvailable,
+    bool? isBooked,
   }) {
     return Slot(
+      doctorId: doctorId ?? this.doctorId,
       slotId: slotId ?? this.slotId,
-      docName: docName ?? this.docName,
-      docAddress: docAddress ?? this.docAddress,
+      doctorName: doctorName ?? this.doctorName,
+      doctorAddress: doctorAddress ?? this.doctorAddress,
       slotdate: slotdate ?? this.slotdate,
       slotTime: slotTime ?? this.slotTime,
       availableSlotCount: availableSlotCount ?? this.availableSlotCount,
+      isAvailable: isAvailable ?? this.isAvailable,
+      isBooked: isBooked ?? this.isBooked,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'doctorId': doctorId,
       'slotId': slotId,
-      'docName': docName,
-      'docAddress': docAddress,
+      'doctorName': doctorName,
+      'doctorAddress': doctorAddress,
       'slotdate': slotdate,
       'slotTime': slotTime,
       'availableSlotCount': availableSlotCount,
+      'isAvailable': isAvailable,
+      'isBooked': isBooked,
     };
   }
 
   factory Slot.fromMap(Map<String, dynamic> map) {
     return Slot(
+      doctorId: map['doctorId'],
       slotId: map['slotId'],
-      docName: map['docName'],
-      docAddress: map['docAddress'],
+      doctorName: map['doctorName'],
+      doctorAddress: map['doctorAddress'],
       slotdate: map['slotdate'],
       slotTime: map['slotTime'],
       availableSlotCount: map['availableSlotCount']?.toInt(),
+      isAvailable: map['isAvailable'],
+      isBooked: map['isBooked'],
     );
   }
 
@@ -66,18 +84,21 @@ class Slot extends Equatable {
 
   @override
   String toString() {
-    return 'Slot(slotId: $slotId, docName: $docName, docAddress: $docAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount)';
+    return 'Slot(doctorId: $doctorId, slotId: $slotId, doctorName: $doctorName, doctorAddress: $doctorAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount, isAvailable: $isAvailable, isBooked: $isBooked)';
   }
 
   @override
   List<Object> get props {
     return [
+      // doctorId,
       // slotId,
-      // docName,
-      // docAddress,
+      // doctorName,
+      // doctorAddress,
       // slotdate,
       // slotTime,
       // availableSlotCount,
+      // isAvailable,
+      // isBooked,
     ];
   }
 }
