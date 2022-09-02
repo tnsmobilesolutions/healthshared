@@ -10,8 +10,7 @@ class Slot extends Equatable {
   final String? slotId;
   final String? doctorName;
   final String? doctorAddress;
-  final String? slotDateTime;
-
+  final DateTime? slotDateTime;
   final int? availableSlotCount;
   final bool? isAvailable;
   final bool? isBooked;
@@ -33,7 +32,7 @@ class Slot extends Equatable {
     String? slotId,
     String? doctorName,
     String? doctorAddress,
-    String? slotDateTime,
+    DateTime? slotDateTime,
     int? availableSlotCount,
     bool? isAvailable,
     bool? isBooked,
@@ -58,7 +57,7 @@ class Slot extends Equatable {
       'slotId': slotId,
       'doctorName': doctorName,
       'doctorAddress': doctorAddress,
-      'slotDateTime': slotDateTime,
+      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
       'availableSlotCount': availableSlotCount,
       'isAvailable': isAvailable,
       'isBooked': isBooked,
@@ -72,7 +71,9 @@ class Slot extends Equatable {
       slotId: map['slotId'],
       doctorName: map['doctorName'],
       doctorAddress: map['doctorAddress'],
-      slotDateTime: map['slotDateTime'],
+      slotDateTime: map['slotDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
+          : null,
       availableSlotCount: map['availableSlotCount']?.toInt(),
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
