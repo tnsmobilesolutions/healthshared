@@ -10,8 +10,8 @@ class Slot extends Equatable {
   final String? slotId;
   final String? doctorName;
   final String? doctorAddress;
-  final String? slotdate;
-  final String? slotTime;
+  final String? slotDateTime;
+
   final int? availableSlotCount;
   final bool? isAvailable;
   final bool? isBooked;
@@ -21,8 +21,7 @@ class Slot extends Equatable {
     this.slotId,
     this.doctorName,
     this.doctorAddress,
-    this.slotdate,
-    this.slotTime,
+    this.slotDateTime,
     this.availableSlotCount,
     this.isAvailable,
     this.isBooked,
@@ -34,8 +33,7 @@ class Slot extends Equatable {
     String? slotId,
     String? doctorName,
     String? doctorAddress,
-    String? slotdate,
-    String? slotTime,
+    String? slotDateTime,
     int? availableSlotCount,
     bool? isAvailable,
     bool? isBooked,
@@ -46,8 +44,7 @@ class Slot extends Equatable {
       slotId: slotId ?? this.slotId,
       doctorName: doctorName ?? this.doctorName,
       doctorAddress: doctorAddress ?? this.doctorAddress,
-      slotdate: slotdate ?? this.slotdate,
-      slotTime: slotTime ?? this.slotTime,
+      slotDateTime: slotDateTime ?? this.slotDateTime,
       availableSlotCount: availableSlotCount ?? this.availableSlotCount,
       isAvailable: isAvailable ?? this.isAvailable,
       isBooked: isBooked ?? this.isBooked,
@@ -61,8 +58,7 @@ class Slot extends Equatable {
       'slotId': slotId,
       'doctorName': doctorName,
       'doctorAddress': doctorAddress,
-      'slotdate': slotdate,
-      'slotTime': slotTime,
+      'slotDateTime': slotDateTime,
       'availableSlotCount': availableSlotCount,
       'isAvailable': isAvailable,
       'isBooked': isBooked,
@@ -76,8 +72,7 @@ class Slot extends Equatable {
       slotId: map['slotId'],
       doctorName: map['doctorName'],
       doctorAddress: map['doctorAddress'],
-      slotdate: map['slotdate'],
-      slotTime: map['slotTime'],
+      slotDateTime: map['slotDateTime'],
       availableSlotCount: map['availableSlotCount']?.toInt(),
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
@@ -90,7 +85,7 @@ class Slot extends Equatable {
 
   @override
   String toString() {
-    return 'Slot(eventTitle: $eventTitle, doctorId: $doctorId, slotId: $slotId, doctorName: $doctorName, doctorAddress: $doctorAddress, slotdate: $slotdate, slotTime: $slotTime, availableSlotCount: $availableSlotCount, isAvailable: $isAvailable, isBooked: $isBooked)';
+    return 'Slot(eventTitle: $eventTitle, doctorId: $doctorId, slotId: $slotId, doctorName: $doctorName, doctorAddress: $doctorAddress, slotDateTime: $slotDateTime, availableSlotCount: $availableSlotCount, isAvailable: $isAvailable, isBooked: $isBooked)';
   }
 
   @override
@@ -101,8 +96,7 @@ class Slot extends Equatable {
       // slotId,
       // doctorName,
       // doctorAddress,
-      // slotdate,
-      // slotTime,
+      // slotDateTime,
       // availableSlotCount,
       // isAvailable,
       // isBooked,
