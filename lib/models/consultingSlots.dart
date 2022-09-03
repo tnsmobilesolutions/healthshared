@@ -1,36 +1,49 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ConsultingSlots {
+class Appointments {
   final String? doctorId;
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
-  final String? date;
-  final DateTime? dateTime;
-  ConsultingSlots({
+  final DateTime? slotDateTime;
+  final bool? isCancelled;
+  final String? cancellationReason;
+  final String? cancelledBy;
+  final String? bookedByUser;
+  Appointments({
     this.doctorId,
     this.isAvailable,
     this.isBooked,
     this.slotId,
-    this.date,
-    this.dateTime,
+    this.slotDateTime,
+    this.isCancelled,
+    this.cancellationReason,
+    this.cancelledBy,
+    this.bookedByUser,
   });
 
-  ConsultingSlots copyWith({
+  Appointments copyWith({
     String? doctorId,
     bool? isAvailable,
     bool? isBooked,
     String? slotId,
-    String? date,
-    DateTime? dateTime,
+    DateTime? slotDateTime,
+    bool? isCancelled,
+    String? cancellationReason,
+    String? cancelledBy,
+    String? bookedByUser,
   }) {
-    return ConsultingSlots(
+    return Appointments(
       doctorId: doctorId ?? this.doctorId,
       isAvailable: isAvailable ?? this.isAvailable,
       isBooked: isBooked ?? this.isBooked,
       slotId: slotId ?? this.slotId,
-      date: date ?? this.date,
-      dateTime: dateTime ?? this.dateTime,
+      slotDateTime: slotDateTime ?? this.slotDateTime,
+      isCancelled: isCancelled ?? this.isCancelled,
+      cancellationReason: cancellationReason ?? this.cancellationReason,
+      cancelledBy: cancelledBy ?? this.cancelledBy,
+      bookedByUser: bookedByUser ?? this.bookedByUser,
     );
   }
 
@@ -40,45 +53,60 @@ class ConsultingSlots {
       'isAvailable': isAvailable,
       'isBooked': isBooked,
       'slotId': slotId,
-      'date': date,
-      'dateTime': dateTime?.millisecondsSinceEpoch,
+      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
+      'isCancelled': isCancelled,
+      'cancellationReason': cancellationReason,
+      'cancelledBy': cancelledBy,
+      'bookedByUser': bookedByUser,
     };
   }
 
-  factory ConsultingSlots.fromMap(Map<String, dynamic> map) {
-    return ConsultingSlots(
+  factory Appointments.fromMap(Map<String, dynamic> map) {
+    DateTime? slotDateTime;
+
+    if (map['slotDateTime'] != null) {
+      Timestamp receiptDateTimeStamp = map['slotDateTime'];
+      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
+          receiptDateTimeStamp.seconds * 1000);
+    }
+
+    return Appointments(
       doctorId: map['doctorId'],
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      date: map['date'],
-      dateTime: map['dateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['dateTime'])
-          : null,
+      slotDateTime: slotDateTime,
+      isCancelled: map['isCancelled'],
+      cancellationReason: map['cancellationReason'],
+      cancelledBy: map['cancelledBy'],
+      bookedByUser: map['bookedByUser'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ConsultingSlots.fromJson(String source) =>
-      ConsultingSlots.fromMap(json.decode(source));
+  factory Appointments.fromJson(String source) =>
+      Appointments.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'ConsultingSlots(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, date: $date, dateTime: $dateTime)';
+    return 'ConsultingSlots(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ConsultingSlots &&
+    return other is Appointments &&
         other.doctorId == doctorId &&
         other.isAvailable == isAvailable &&
         other.isBooked == isBooked &&
         other.slotId == slotId &&
-        other.date == date &&
-        other.dateTime == dateTime;
+        other.slotDateTime == slotDateTime &&
+        other.isCancelled == isCancelled &&
+        other.cancellationReason == cancellationReason &&
+        other.cancelledBy == cancelledBy &&
+        other.bookedByUser == bookedByUser;
   }
 
   @override
@@ -87,7 +115,10 @@ class ConsultingSlots {
         isAvailable.hashCode ^
         isBooked.hashCode ^
         slotId.hashCode ^
-        date.hashCode ^
-        dateTime.hashCode;
+        slotDateTime.hashCode ^
+        isCancelled.hashCode ^
+        cancellationReason.hashCode ^
+        cancelledBy.hashCode ^
+        bookedByUser.hashCode;
   }
 }
