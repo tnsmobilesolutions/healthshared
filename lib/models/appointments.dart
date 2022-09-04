@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Appointments {
   final String? doctorId;
   final bool? isAvailable;
@@ -17,7 +15,7 @@ class Appointments {
     this.isAvailable,
     this.isBooked,
     this.slotId,
-    this.slotDateTime,
+    required this.slotDateTime,
     this.isCancelled,
     this.cancellationReason,
     this.cancelledBy,
