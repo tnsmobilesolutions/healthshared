@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Appointments {
@@ -6,7 +7,7 @@ class Appointments {
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
-  final DateTime? slotDateTime;
+  final DateTime slotDateTime;
   final bool? isCancelled;
   final String? cancellationReason;
   final String? cancelledBy;
@@ -53,7 +54,7 @@ class Appointments {
       'isAvailable': isAvailable,
       'isBooked': isBooked,
       'slotId': slotId,
-      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
+      'slotDateTime': slotDateTime.millisecondsSinceEpoch,
       'isCancelled': isCancelled,
       'cancellationReason': cancellationReason,
       'cancelledBy': cancelledBy,
@@ -62,20 +63,12 @@ class Appointments {
   }
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
-    DateTime? slotDateTime;
-
-    if (map['slotDateTime'] != null) {
-      Timestamp receiptDateTimeStamp = map['slotDateTime'];
-      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          receiptDateTimeStamp.seconds * 1000);
-    }
-
     return Appointments(
       doctorId: map['doctorId'],
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      slotDateTime: slotDateTime,
+      slotDateTime: DateTime.fromMillisecondsSinceEpoch(map['slotDateTime']),
       isCancelled: map['isCancelled'],
       cancellationReason: map['cancellationReason'],
       cancelledBy: map['cancelledBy'],
@@ -90,7 +83,7 @@ class Appointments {
 
   @override
   String toString() {
-    return 'ConsultingSlots(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
+    return 'Appointments(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
   }
 
   @override
