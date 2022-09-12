@@ -5,8 +5,7 @@ class Appointments {
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
-  final DateTime? slotDate;
-  final String? slotTime;
+  final String? slotDateTime;
   final bool? isCancelled;
   final String? cancellationReason;
   final String? cancelledBy;
@@ -16,8 +15,7 @@ class Appointments {
     this.isAvailable,
     this.isBooked,
     this.slotId,
-    this.slotDate,
-    this.slotTime,
+    this.slotDateTime,
     this.isCancelled,
     this.cancellationReason,
     this.cancelledBy,
@@ -29,8 +27,7 @@ class Appointments {
     bool? isAvailable,
     bool? isBooked,
     String? slotId,
-    DateTime? slotDate,
-    String? slotTime,
+    String? slotDateTime,
     bool? isCancelled,
     String? cancellationReason,
     String? cancelledBy,
@@ -41,8 +38,7 @@ class Appointments {
       isAvailable: isAvailable ?? this.isAvailable,
       isBooked: isBooked ?? this.isBooked,
       slotId: slotId ?? this.slotId,
-      slotDate: slotDate ?? this.slotDate,
-      slotTime: slotTime ?? this.slotTime,
+      slotDateTime: slotDateTime ?? this.slotDateTime,
       isCancelled: isCancelled ?? this.isCancelled,
       cancellationReason: cancellationReason ?? this.cancellationReason,
       cancelledBy: cancelledBy ?? this.cancelledBy,
@@ -56,8 +52,7 @@ class Appointments {
       'isAvailable': isAvailable,
       'isBooked': isBooked,
       'slotId': slotId,
-      'slotDate': slotDate?.millisecondsSinceEpoch,
-      'slotTime': slotTime,
+      'slotDateTime': slotDateTime,
       'isCancelled': isCancelled,
       'cancellationReason': cancellationReason,
       'cancelledBy': cancelledBy,
@@ -71,10 +66,7 @@ class Appointments {
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      slotDate: map['slotDate'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['slotDate'])
-          : null,
-      slotTime: map['slotTime'],
+      slotDateTime: map['slotDateTime'],
       isCancelled: map['isCancelled'],
       cancellationReason: map['cancellationReason'],
       cancelledBy: map['cancelledBy'],
@@ -89,7 +81,7 @@ class Appointments {
 
   @override
   String toString() {
-    return 'Appointments(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDate: $slotDate, slotTime: $slotTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
+    return 'Appointments(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
   }
 
   @override
@@ -101,8 +93,7 @@ class Appointments {
         other.isAvailable == isAvailable &&
         other.isBooked == isBooked &&
         other.slotId == slotId &&
-        other.slotDate == slotDate &&
-        other.slotTime == slotTime &&
+        other.slotDateTime == slotDateTime &&
         other.isCancelled == isCancelled &&
         other.cancellationReason == cancellationReason &&
         other.cancelledBy == cancelledBy &&
@@ -115,8 +106,7 @@ class Appointments {
         isAvailable.hashCode ^
         isBooked.hashCode ^
         slotId.hashCode ^
-        slotDate.hashCode ^
-        slotTime.hashCode ^
+        slotDateTime.hashCode ^
         isCancelled.hashCode ^
         cancellationReason.hashCode ^
         cancelledBy.hashCode ^
