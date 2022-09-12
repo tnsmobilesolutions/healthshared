@@ -9,6 +9,7 @@ class Address extends Equatable {
     this.addressLine2,
     this.addressType,
     this.city,
+    this.country,
     this.patientName,
     this.phoneNumber,
     this.pincode,
@@ -27,6 +28,7 @@ class Address extends Equatable {
       addressLine2: map['addressLine2'],
       addressType: map['addressType'],
       city: map['city'],
+      country: map['country'],
       patientName: map['patientName'],
       phoneNumber: map['phoneNumber']?.toInt(),
       pincode: map['pincode']?.toInt(),
@@ -41,6 +43,7 @@ class Address extends Equatable {
   final String? addressLine2;
   final String? addressType;
   final String? city;
+  final String? country;
   final String? patientName;
   final int? phoneNumber;
   final int? pincode;
@@ -79,7 +82,7 @@ class Address extends Equatable {
 
   @override
   String toString() {
-    return 'Address(addressId: $addressId, addressLine1: $addressLine1, addressLine2: $addressLine2, addressType: $addressType, city: $city, patientName: $patientName, phoneNumber: $phoneNumber, pincode: $pincode, state: $state, latitude: $latitude, longitude: $longitude)';
+    return 'Address(addressId: $addressId, addressLine1: $addressLine1, addressLine2: $addressLine2, addressType: $addressType, city: $city, country: $country, patientName: $patientName, phoneNumber: $phoneNumber, pincode: $pincode, state: $state, latitude: $latitude, longitude: $longitude)';
   }
 
   Address copyWith({
@@ -88,6 +91,7 @@ class Address extends Equatable {
     String? addressLine2,
     String? addressType,
     String? city,
+    String? country,
     String? patientName,
     int? phoneNumber,
     int? pincode,
@@ -101,6 +105,7 @@ class Address extends Equatable {
       addressLine2: addressLine2 ?? this.addressLine2,
       addressType: addressType ?? this.addressType,
       city: city ?? this.city,
+      country: country ?? this.country,
       patientName: patientName ?? this.patientName,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       pincode: pincode ?? this.pincode,
@@ -117,6 +122,7 @@ class Address extends Equatable {
       'addressLine2': addressLine2,
       'addressType': addressType,
       'city': city,
+      'country': country,
       'patientName': patientName,
       'phoneNumber': phoneNumber,
       'pincode': pincode,
@@ -136,6 +142,7 @@ class Address extends Equatable {
       // addressLine2,
       // addressType,
       // city,
+      // country,
       // patientName,
       // phoneNumber,
       // pincode,
