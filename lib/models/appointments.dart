@@ -5,7 +5,7 @@ class Appointments {
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
-  final String? slotDateTime;
+  final DateTime? slotDateTime;
   final bool? isCancelled;
   final String? cancellationReason;
   final String? cancelledBy;
@@ -27,7 +27,7 @@ class Appointments {
     bool? isAvailable,
     bool? isBooked,
     String? slotId,
-    String? slotDateTime,
+    DateTime? slotDateTime,
     bool? isCancelled,
     String? cancellationReason,
     String? cancelledBy,
@@ -52,7 +52,7 @@ class Appointments {
       'isAvailable': isAvailable,
       'isBooked': isBooked,
       'slotId': slotId,
-      'slotDateTime': slotDateTime,
+      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
       'isCancelled': isCancelled,
       'cancellationReason': cancellationReason,
       'cancelledBy': cancelledBy,
@@ -66,7 +66,9 @@ class Appointments {
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      slotDateTime: map['slotDateTime'],
+      slotDateTime: map['slotDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
+          : null,
       isCancelled: map['isCancelled'],
       cancellationReason: map['cancellationReason'],
       cancelledBy: map['cancelledBy'],
