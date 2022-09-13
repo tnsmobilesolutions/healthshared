@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Appointments {
   final String? doctorId;
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
   final DateTime? slotDateTime;
+  final String? slotTime;
   final bool? isCancelled;
   final String? cancellationReason;
   final String? cancelledBy;
@@ -18,6 +17,7 @@ class Appointments {
     this.isBooked,
     this.slotId,
     required this.slotDateTime,
+    this.slotTime,
     this.isCancelled,
     this.cancellationReason,
     this.cancelledBy,
@@ -30,6 +30,7 @@ class Appointments {
     bool? isBooked,
     String? slotId,
     DateTime? slotDateTime,
+    String? slotTime,
     bool? isCancelled,
     String? cancellationReason,
     String? cancelledBy,
@@ -41,6 +42,7 @@ class Appointments {
       isBooked: isBooked ?? this.isBooked,
       slotId: slotId ?? this.slotId,
       slotDateTime: slotDateTime ?? this.slotDateTime,
+      slotTime: slotTime ?? this.slotTime,
       isCancelled: isCancelled ?? this.isCancelled,
       cancellationReason: cancellationReason ?? this.cancellationReason,
       cancelledBy: cancelledBy ?? this.cancelledBy,
@@ -55,6 +57,7 @@ class Appointments {
       'isBooked': isBooked,
       'slotId': slotId,
       'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
+      'slotTime': slotTime,
       'isCancelled': isCancelled,
       'cancellationReason': cancellationReason,
       'cancelledBy': cancelledBy,
@@ -63,18 +66,15 @@ class Appointments {
   }
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
-    DateTime? slotDateTime;
-    if (map['receiptDate'] != null) {
-      Timestamp receiptDateTimeStamp = map['receiptDate'];
-      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          receiptDateTimeStamp.seconds * 1000);
-    }
     return Appointments(
       doctorId: map['doctorId'],
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      slotDateTime: slotDateTime,
+      slotDateTime: map['slotDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
+          : null,
+      slotTime: map['slotTime'],
       isCancelled: map['isCancelled'],
       cancellationReason: map['cancellationReason'],
       cancelledBy: map['cancelledBy'],
@@ -89,7 +89,7 @@ class Appointments {
 
   @override
   String toString() {
-    return 'Appointments(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
+    return 'Appointments(doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, slotId: $slotId, slotDateTime: $slotDateTime, slotTime: $slotTime, isCancelled: $isCancelled, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, bookedByUser: $bookedByUser)';
   }
 
   @override
@@ -102,6 +102,7 @@ class Appointments {
         other.isBooked == isBooked &&
         other.slotId == slotId &&
         other.slotDateTime == slotDateTime &&
+        other.slotTime == slotTime &&
         other.isCancelled == isCancelled &&
         other.cancellationReason == cancellationReason &&
         other.cancelledBy == cancelledBy &&
@@ -115,6 +116,7 @@ class Appointments {
         isBooked.hashCode ^
         slotId.hashCode ^
         slotDateTime.hashCode ^
+        slotTime.hashCode ^
         isCancelled.hashCode ^
         cancellationReason.hashCode ^
         cancelledBy.hashCode ^
