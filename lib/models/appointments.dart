@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Appointments {
   final String? doctorId;
   final bool? isAvailable;
@@ -66,14 +68,18 @@ class Appointments {
   }
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
+    DateTime? slotDateTime;
+    if (map['receiptDate'] != null) {
+      Timestamp receiptDateTimeStamp = map['receiptDate'];
+      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
+          receiptDateTimeStamp.seconds * 1000);
+    }
     return Appointments(
       doctorId: map['doctorId'],
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       slotId: map['slotId'],
-      slotDateTime: map['slotDateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
-          : null,
+      slotDateTime: slotDateTime,
       slotTime: map['slotTime'],
       isCancelled: map['isCancelled'],
       cancellationReason: map['cancellationReason'],
