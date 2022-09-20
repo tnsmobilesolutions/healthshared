@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class Appointments {
   final String? doctorId;
   final bool? isAvailable;
   final bool? isBooked;
   final String? slotId;
-  final List<DateTime?>? slotDateTime;
+  final DateTime? slotDateTime;
   final String? slotTime;
   final bool? isCancelled;
   final String? cancellationReason;
@@ -32,7 +31,7 @@ class Appointments {
     bool? isAvailable,
     bool? isBooked,
     String? slotId,
-    List<DateTime?>? slotDateTime,
+    DateTime? slotDateTime,
     String? slotTime,
     bool? isCancelled,
     String? cancellationReason,
@@ -53,21 +52,13 @@ class Appointments {
     );
   }
 
-  Map<String, dynamic> toMap(Map<String, dynamic> map) {
-    List<DateTime?>? slotDateTime;
-    if (map['slotDateTime'] != null) {
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
-      slotDateTime = [
-        DateTime.fromMillisecondsSinceEpoch(
-            slotDateTimeTimeStamp.seconds * 1000)
-      ];
-    }
+  Map<String, dynamic> toMap() {
     return {
       'doctorId': doctorId,
       'isAvailable': isAvailable,
       'isBooked': isBooked,
       'slotId': slotId,
-      'slotDateTime': slotDateTime,
+      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
       'slotTime': slotTime,
       'isCancelled': isCancelled,
       'cancellationReason': cancellationReason,
@@ -77,13 +68,11 @@ class Appointments {
   }
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
-    List<DateTime?>? slotDateTime;
+    DateTime? slotDateTime;
     if (map['slotDateTime'] != null) {
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
-      slotDateTime = [
-        DateTime.fromMillisecondsSinceEpoch(
-            slotDateTimeTimeStamp.seconds * 1000)
-      ];
+      Timestamp receiptDateTimeStamp = map['slotDateTime'];
+      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
+          receiptDateTimeStamp.seconds * 1000);
     }
     return Appointments(
       doctorId: map['doctorId'],
@@ -99,7 +88,7 @@ class Appointments {
     );
   }
 
-  String toJson(String source) => json.encode(toMap(json.decode(source)));
+  String toJson() => json.encode(toMap());
 
   factory Appointments.fromJson(String source) =>
       Appointments.fromMap(json.decode(source));
@@ -118,7 +107,7 @@ class Appointments {
         other.isAvailable == isAvailable &&
         other.isBooked == isBooked &&
         other.slotId == slotId &&
-        listEquals(other.slotDateTime, slotDateTime) &&
+        other.slotDateTime == slotDateTime &&
         other.slotTime == slotTime &&
         other.isCancelled == isCancelled &&
         other.cancellationReason == cancellationReason &&
