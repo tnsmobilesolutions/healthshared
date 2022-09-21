@@ -21,7 +21,7 @@ class Appointments {
   factory Appointments.fromMap(Map<String, dynamic> map) {
     DateTime? slotDateTime;
     if (map['slotDateTime'] != null) {
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'].toDateTime();
+      Timestamp slotDateTimeTimeStamp = map['slotDateTime'].toDate();
       slotDateTime = DateTime.fromMillisecondsSinceEpoch(
           slotDateTimeTimeStamp.seconds * 1000);
     }
