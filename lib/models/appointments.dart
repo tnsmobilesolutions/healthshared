@@ -20,7 +20,7 @@ class Appointments {
     DateTime? slotDateTime;
     if (map['slotDateTime'] != null) {
       //List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
-      DateTime slotDateTimeTimeStamp = map['slotDateTime'];
+      DateTime slotDateTimeTimeStamp = map['slotDateTime'] as DateTime;
       slotDateTime = DateTime.fromMillisecondsSinceEpoch(
           slotDateTimeTimeStamp.second * 1000);
     }
