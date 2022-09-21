@@ -22,7 +22,7 @@ class Appointments {
       //List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
       dynamic slotDateTimeTimeStamp = map['slotDateTime'];
       slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          slotDateTimeTimeStamp.seconds * 1000);
+          slotDateTimeTimeStamp.second * 1000);
     }
     return Appointments(
       doctorId: map['doctorId'],
