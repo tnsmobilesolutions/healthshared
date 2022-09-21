@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Appointments {
   Appointments({
@@ -20,9 +19,9 @@ class Appointments {
   factory Appointments.fromMap(Map<String, dynamic> map) {
     DateTime? slotDateTime;
     if (map['slotDateTime'] != null) {
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
+      DateTime slotDateTimeTimeStamp = map['slotDateTime'];
       slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          slotDateTimeTimeStamp.seconds * 1000);
+          slotDateTimeTimeStamp.second * 1000);
     }
     // DateTime? slotDateTime;
     // if (map['slotDateTime'] != null) {
