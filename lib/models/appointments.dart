@@ -21,7 +21,7 @@ class Appointments {
   factory Appointments.fromMap(Map<String, dynamic> map) {
     List<DateTime?>? slotDateTime;
     if (map['slotDateTime'] != null) {
-      List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
+      List<dynamic> slotDateTimeTimeStamp = [map['slotDateTime']];
       slotDateTime = [
         DateTime.fromMillisecondsSinceEpoch(
             slotDateTimeTimeStamp[0].seconds * 1000)
