@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
-
 import 'package:healthshared/models/address_model.dart';
 
 class Order extends Equatable {
