@@ -39,7 +39,8 @@ class Appointments {
       isCancelled: map['isCancelled'],
       slotDateTime: slotDateTime,
       slotId: map['slotId'],
-      reportURL: List<String>.from(map['reportURL']),
+      reportURL:
+          map['reportURL'] != null ? List<String>.from(map['reportURL']) : null,
       problemInfo: map['problemInfo'],
     );
   }
