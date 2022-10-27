@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class Appointments {
   Appointments({
@@ -38,7 +39,7 @@ class Appointments {
       isCancelled: map['isCancelled'],
       slotDateTime: slotDateTime,
       slotId: map['slotId'],
-      reportURL: map['reportURL'],
+      reportURL: List<String>.from(map['reportURL']),
       problemInfo: map['problemInfo'],
     );
   }
@@ -52,7 +53,7 @@ class Appointments {
   final bool? isCancelled;
   final DateTime? slotDateTime;
   final String? slotId;
-  final String? reportURL;
+  final List<String>? reportURL;
   final String? problemInfo;
 
   @override
@@ -69,7 +70,7 @@ class Appointments {
         other.isCancelled == isCancelled &&
         other.slotDateTime == slotDateTime &&
         other.slotId == slotId &&
-        other.reportURL == reportURL &&
+        listEquals(other.reportURL, reportURL) &&
         other.problemInfo == problemInfo;
   }
 
@@ -103,7 +104,7 @@ class Appointments {
     bool? isCancelled,
     DateTime? slotDateTime,
     String? slotId,
-    String? reportURL,
+    List<String>? reportURL,
     String? problemInfo,
   }) {
     return Appointments(
