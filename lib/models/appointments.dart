@@ -39,8 +39,7 @@ class Appointments {
       isCancelled: map['isCancelled'],
       slotDateTime: slotDateTime,
       slotId: map['slotId'],
-      reportURL:
-          map['reportURL'] != null ? List<String>.from(map['reportURL']) : null,
+      reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
     );
   }
@@ -54,7 +53,7 @@ class Appointments {
   final bool? isCancelled;
   final DateTime? slotDateTime;
   final String? slotId;
-  final List<String>? reportURL;
+  final String? reportURL;
   final String? problemInfo;
 
   @override
@@ -71,7 +70,7 @@ class Appointments {
         other.isCancelled == isCancelled &&
         other.slotDateTime == slotDateTime &&
         other.slotId == slotId &&
-        listEquals(other.reportURL, reportURL) &&
+        other.reportURL == reportURL &&
         other.problemInfo == problemInfo;
   }
 
@@ -105,7 +104,7 @@ class Appointments {
     bool? isCancelled,
     DateTime? slotDateTime,
     String? slotId,
-    List<String>? reportURL,
+    String? reportURL,
     String? problemInfo,
   }) {
     return Appointments(
