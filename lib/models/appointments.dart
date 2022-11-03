@@ -16,6 +16,7 @@ class Appointments {
     this.slotId,
     this.reportURL,
     this.problemInfo,
+    this.videoCallToken,
   });
 
   factory Appointments.fromJson(String source) =>
@@ -41,6 +42,7 @@ class Appointments {
       slotId: map['slotId'],
       reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
+      videoCallToken: map['videoCallToken'],
     );
   }
 
@@ -55,6 +57,7 @@ class Appointments {
   final String? slotId;
   final String? reportURL;
   final String? problemInfo;
+  final String? videoCallToken;
 
   @override
   bool operator ==(Object other) {
@@ -71,7 +74,8 @@ class Appointments {
         other.slotDateTime == slotDateTime &&
         other.slotId == slotId &&
         other.reportURL == reportURL &&
-        other.problemInfo == problemInfo;
+        other.problemInfo == problemInfo &&
+        other.videoCallToken == videoCallToken;
   }
 
   @override
@@ -86,12 +90,13 @@ class Appointments {
         slotDateTime.hashCode ^
         slotId.hashCode ^
         reportURL.hashCode ^
-        problemInfo.hashCode;
+        problemInfo.hashCode ^
+        videoCallToken.hashCode;
   }
 
   @override
   String toString() {
-    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo)';
+    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo, videoCallToken: $videoCallToken)';
   }
 
   Appointments copyWith({
@@ -106,6 +111,7 @@ class Appointments {
     String? slotId,
     String? reportURL,
     String? problemInfo,
+    String? videoCallToken,
   }) {
     return Appointments(
       bookedByUser: bookedByUser ?? this.bookedByUser,
@@ -119,6 +125,7 @@ class Appointments {
       slotId: slotId ?? this.slotId,
       reportURL: reportURL ?? this.reportURL,
       problemInfo: problemInfo ?? this.problemInfo,
+      videoCallToken: videoCallToken ?? this.videoCallToken,
     );
   }
 
@@ -135,6 +142,7 @@ class Appointments {
       'slotId': slotId,
       'reportURL': reportURL,
       'problemInfo': problemInfo,
+      'videoCallToken': videoCallToken,
     };
   }
 
