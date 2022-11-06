@@ -7,6 +7,7 @@ import 'package:healthshared/models/paymentModel.dart';
 
 class MedicineOrder {
   Address? address;
+  String? medicineType;
   String? deliveryDate;
   String? deliveryTime;
   String? esimatedDeliveryDate;
@@ -27,6 +28,7 @@ class MedicineOrder {
   PaymentModel? paymentInfo;
   MedicineOrder({
     this.address,
+    this.medicineType,
     this.deliveryDate,
     this.deliveryTime,
     this.esimatedDeliveryDate,
@@ -49,6 +51,7 @@ class MedicineOrder {
 
   MedicineOrder copyWith({
     Address? address,
+    String? medicineType,
     String? deliveryDate,
     String? deliveryTime,
     String? esimatedDeliveryDate,
@@ -70,6 +73,7 @@ class MedicineOrder {
   }) {
     return MedicineOrder(
       address: address ?? this.address,
+      medicineType: medicineType ?? this.medicineType,
       deliveryDate: deliveryDate ?? this.deliveryDate,
       deliveryTime: deliveryTime ?? this.deliveryTime,
       esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
@@ -97,6 +101,9 @@ class MedicineOrder {
 
     if (address != null) {
       result.addAll({'address': address!.toMap()});
+    }
+    if (medicineType != null) {
+      result.addAll({'medicineType': medicineType});
     }
     if (deliveryDate != null) {
       result.addAll({'deliveryDate': deliveryDate});
@@ -159,6 +166,7 @@ class MedicineOrder {
   factory MedicineOrder.fromMap(Map<String, dynamic> map) {
     return MedicineOrder(
       address: map['address'] != null ? Address.fromMap(map['address']) : null,
+      medicineType: map['medicineType'],
       deliveryDate: map['deliveryDate'],
       deliveryTime: map['deliveryTime'],
       esimatedDeliveryDate: map['esimatedDeliveryDate'],
@@ -189,7 +197,7 @@ class MedicineOrder {
 
   @override
   String toString() {
-    return 'MedicineOrder(address: $address, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
+    return 'MedicineOrder(address: $address, medicineType: $medicineType, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
   }
 
   @override
@@ -198,6 +206,7 @@ class MedicineOrder {
 
     return other is MedicineOrder &&
         other.address == address &&
+        other.medicineType == medicineType &&
         other.deliveryDate == deliveryDate &&
         other.deliveryTime == deliveryTime &&
         other.esimatedDeliveryDate == esimatedDeliveryDate &&
@@ -221,6 +230,7 @@ class MedicineOrder {
   @override
   int get hashCode {
     return address.hashCode ^
+        medicineType.hashCode ^
         deliveryDate.hashCode ^
         deliveryTime.hashCode ^
         esimatedDeliveryDate.hashCode ^
