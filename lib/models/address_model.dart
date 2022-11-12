@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 class Address extends Equatable {
@@ -15,6 +16,7 @@ class Address extends Equatable {
     this.state,
     this.latitude,
     this.longitude,
+    this.isDefaultAddress,
   });
 
   factory Address.fromJson(String source) =>
@@ -34,6 +36,7 @@ class Address extends Equatable {
       state: map['state'],
       latitude: map['latitude']?.toDouble(),
       longitude: map['longitude']?.toDouble(),
+      isDefaultAddress: map['isDefaultAddress'],
     );
   }
 
@@ -49,6 +52,7 @@ class Address extends Equatable {
   final String? state;
   final double? latitude;
   final double? longitude;
+  final bool? isDefaultAddress;
 
   @override
   bool operator ==(Object other) {
@@ -81,7 +85,7 @@ class Address extends Equatable {
 
   @override
   String toString() {
-    return 'Address(addressId: $addressId, addressLine1: $addressLine1, addressLine2: $addressLine2, addressType: $addressType, city: $city, country: $country, patientName: $patientName, phoneNumber: $phoneNumber, pincode: $pincode, state: $state, latitude: $latitude, longitude: $longitude)';
+    return 'Address(addressId: $addressId, addressLine1: $addressLine1, addressLine2: $addressLine2, addressType: $addressType, city: $city, country: $country, patientName: $patientName, phoneNumber: $phoneNumber, pincode: $pincode, state: $state, latitude: $latitude, longitude: $longitude, isDefaultAddress: $isDefaultAddress)';
   }
 
   Address copyWith({
@@ -97,6 +101,7 @@ class Address extends Equatable {
     String? state,
     double? latitude,
     double? longitude,
+    bool? isDefaultAddress,
   }) {
     return Address(
       addressId: addressId ?? this.addressId,
@@ -111,6 +116,7 @@ class Address extends Equatable {
       state: state ?? this.state,
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
+      isDefaultAddress: isDefaultAddress ?? this.isDefaultAddress,
     );
   }
 
@@ -128,6 +134,7 @@ class Address extends Equatable {
       'state': state,
       'latitude': latitude,
       'longitude': longitude,
+      'isDefaultAddress': isDefaultAddress,
     };
   }
 
@@ -148,6 +155,7 @@ class Address extends Equatable {
       // state,
       // latitude,
       // longitude,
+      // isDefaultAddress,
     ];
   }
 }
