@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:healthshared/models/address_model.dart';
@@ -15,6 +16,17 @@ class DiagnosisOrderModel {
   final String? userId;
   List<Address?>? diagnosisOrderAddress;
   PaymentModel? paymentInfo;
+  final String? deliveryDate;
+  final String? deliveryTime;
+  final String? esimatedDeliveryDate;
+  final String? estimatedDeliveryTime;
+  final String? billAmount;
+  final String? discount;
+  final String? netPayable;
+  final String? name;
+  final String? paymentStatus;
+  final DateTime? orderDateTime;
+  final String? cancellationNote;
 
   DiagnosisOrderModel({
     this.diagnosisOrderId,
@@ -25,6 +37,17 @@ class DiagnosisOrderModel {
     this.userId,
     this.diagnosisOrderAddress,
     this.paymentInfo,
+    this.deliveryDate,
+    this.deliveryTime,
+    this.esimatedDeliveryDate,
+    this.estimatedDeliveryTime,
+    this.billAmount,
+    this.discount,
+    this.netPayable,
+    this.name,
+    this.paymentStatus,
+    this.orderDateTime,
+    this.cancellationNote,
   });
 
   DiagnosisOrderModel copyWith({
@@ -36,6 +59,17 @@ class DiagnosisOrderModel {
     String? userId,
     List<Address?>? diagnosisOrderAddress,
     PaymentModel? paymentInfo,
+    String? deliveryDate,
+    String? deliveryTime,
+    String? esimatedDeliveryDate,
+    String? estimatedDeliveryTime,
+    String? billAmount,
+    String? discount,
+    String? netPayable,
+    String? name,
+    String? paymentStatus,
+    DateTime? orderDateTime,
+    String? cancellationNote,
   }) {
     return DiagnosisOrderModel(
       diagnosisOrderId: diagnosisOrderId ?? this.diagnosisOrderId,
@@ -47,42 +81,53 @@ class DiagnosisOrderModel {
       diagnosisOrderAddress:
           diagnosisOrderAddress ?? this.diagnosisOrderAddress,
       paymentInfo: paymentInfo ?? this.paymentInfo,
+      deliveryDate: deliveryDate ?? this.deliveryDate,
+      deliveryTime: deliveryTime ?? this.deliveryTime,
+      esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
+      estimatedDeliveryTime:
+          estimatedDeliveryTime ?? this.estimatedDeliveryTime,
+      billAmount: billAmount ?? this.billAmount,
+      discount: discount ?? this.discount,
+      netPayable: netPayable ?? this.netPayable,
+      name: name ?? this.name,
+      paymentStatus: paymentStatus ?? this.paymentStatus,
+      orderDateTime: orderDateTime ?? this.orderDateTime,
+      cancellationNote: cancellationNote ?? this.cancellationNote,
     );
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (diagnosisOrderId != null) {
-      result.addAll({'diagnosisOrderId': diagnosisOrderId});
-    }
-    if (diagnosisName != null) {
-      result.addAll({'diagnosisName': diagnosisName});
-    }
-    result.addAll({'prescriptionURL': prescriptionURL});
-    if (diagnosianID != null) {
-      result.addAll({'diagnosianID': diagnosianID});
-    }
-    if (diagnosisOrderStatus != null) {
-      result.addAll({'diagnosisOrderStatus': diagnosisOrderStatus});
-    }
-    if (userId != null) {
-      result.addAll({'userId': userId});
-    }
-    if (diagnosisOrderAddress != null) {
-      result.addAll({
-        'diagnosisOrderAddress':
-            diagnosisOrderAddress!.map((x) => x?.toMap()).toList()
-      });
-    }
-    if (paymentInfo != null) {
-      result.addAll({'paymentInfo': paymentInfo!.toMap()});
-    }
-
-    return result;
+    return {
+      'diagnosisOrderId': diagnosisOrderId,
+      'diagnosisName': diagnosisName,
+      'prescriptionURL': prescriptionURL,
+      'diagnosianID': diagnosianID,
+      'diagnosisOrderStatus': diagnosisOrderStatus,
+      'userId': userId,
+      'diagnosisOrderAddress':
+          diagnosisOrderAddress?.map((x) => x?.toMap()).toList(),
+      'paymentInfo': paymentInfo?.toMap(),
+      'deliveryDate': deliveryDate,
+      'deliveryTime': deliveryTime,
+      'esimatedDeliveryDate': esimatedDeliveryDate,
+      'estimatedDeliveryTime': estimatedDeliveryTime,
+      'billAmount': billAmount,
+      'discount': discount,
+      'netPayable': netPayable,
+      'name': name,
+      'paymentStatus': paymentStatus,
+      'orderDateTime': orderDateTime?.millisecondsSinceEpoch,
+      'cancellationNote': cancellationNote,
+    };
   }
 
   factory DiagnosisOrderModel.fromMap(Map<String, dynamic> map) {
+    DateTime? orderDateTime;
+    if (map['orderDateTime'] != null) {
+      Timestamp orderDateTimeTimeStamp = map['orderDateTime'];
+      orderDateTime = DateTime.fromMillisecondsSinceEpoch(
+          orderDateTimeTimeStamp.seconds * 1000);
+    }
     return DiagnosisOrderModel(
       diagnosisOrderId: map['diagnosisOrderId'],
       diagnosisName: map['diagnosisName'],
@@ -97,6 +142,17 @@ class DiagnosisOrderModel {
       paymentInfo: map['paymentInfo'] != null
           ? PaymentModel.fromMap(map['paymentInfo'])
           : null,
+      deliveryDate: map['deliveryDate'],
+      deliveryTime: map['deliveryTime'],
+      esimatedDeliveryDate: map['esimatedDeliveryDate'],
+      estimatedDeliveryTime: map['estimatedDeliveryTime'],
+      billAmount: map['billAmount'],
+      discount: map['discount'],
+      netPayable: map['netPayable'],
+      name: map['name'],
+      paymentStatus: map['paymentStatus'],
+      orderDateTime: orderDateTime,
+      cancellationNote: map['cancellationNote'],
     );
   }
 
@@ -107,7 +163,7 @@ class DiagnosisOrderModel {
 
   @override
   String toString() {
-    return 'DiagnosisOrder(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo)';
+    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
   }
 
   @override
@@ -122,7 +178,18 @@ class DiagnosisOrderModel {
         other.diagnosisOrderStatus == diagnosisOrderStatus &&
         other.userId == userId &&
         listEquals(other.diagnosisOrderAddress, diagnosisOrderAddress) &&
-        other.paymentInfo == paymentInfo;
+        other.paymentInfo == paymentInfo &&
+        other.deliveryDate == deliveryDate &&
+        other.deliveryTime == deliveryTime &&
+        other.esimatedDeliveryDate == esimatedDeliveryDate &&
+        other.estimatedDeliveryTime == estimatedDeliveryTime &&
+        other.billAmount == billAmount &&
+        other.discount == discount &&
+        other.netPayable == netPayable &&
+        other.name == name &&
+        other.paymentStatus == paymentStatus &&
+        other.orderDateTime == orderDateTime &&
+        other.cancellationNote == cancellationNote;
   }
 
   @override
@@ -134,6 +201,17 @@ class DiagnosisOrderModel {
         diagnosisOrderStatus.hashCode ^
         userId.hashCode ^
         diagnosisOrderAddress.hashCode ^
-        paymentInfo.hashCode;
+        paymentInfo.hashCode ^
+        deliveryDate.hashCode ^
+        deliveryTime.hashCode ^
+        esimatedDeliveryDate.hashCode ^
+        estimatedDeliveryTime.hashCode ^
+        billAmount.hashCode ^
+        discount.hashCode ^
+        netPayable.hashCode ^
+        name.hashCode ^
+        paymentStatus.hashCode ^
+        orderDateTime.hashCode ^
+        cancellationNote.hashCode;
   }
 }
