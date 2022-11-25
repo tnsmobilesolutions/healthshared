@@ -18,7 +18,7 @@ class DiagnosisOrderModel {
   PaymentModel? paymentInfo;
   final String? deliveryDate;
   final String? deliveryTime;
-  final String? esimatedDeliveryDate;
+  final String? estimatedDeliveryDate;
   final String? estimatedDeliveryTime;
   final String? billAmount;
   final String? discount;
@@ -39,7 +39,7 @@ class DiagnosisOrderModel {
     this.paymentInfo,
     this.deliveryDate,
     this.deliveryTime,
-    this.esimatedDeliveryDate,
+    this.estimatedDeliveryDate,
     this.estimatedDeliveryTime,
     this.billAmount,
     this.discount,
@@ -61,7 +61,7 @@ class DiagnosisOrderModel {
     PaymentModel? paymentInfo,
     String? deliveryDate,
     String? deliveryTime,
-    String? esimatedDeliveryDate,
+    String? estimatedDeliveryDate,
     String? estimatedDeliveryTime,
     String? billAmount,
     String? discount,
@@ -83,7 +83,8 @@ class DiagnosisOrderModel {
       paymentInfo: paymentInfo ?? this.paymentInfo,
       deliveryDate: deliveryDate ?? this.deliveryDate,
       deliveryTime: deliveryTime ?? this.deliveryTime,
-      esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
+      estimatedDeliveryDate:
+          estimatedDeliveryDate ?? this.estimatedDeliveryDate,
       estimatedDeliveryTime:
           estimatedDeliveryTime ?? this.estimatedDeliveryTime,
       billAmount: billAmount ?? this.billAmount,
@@ -109,7 +110,7 @@ class DiagnosisOrderModel {
       'paymentInfo': paymentInfo?.toMap(),
       'deliveryDate': deliveryDate,
       'deliveryTime': deliveryTime,
-      'esimatedDeliveryDate': esimatedDeliveryDate,
+      'estimatedDeliveryDate': estimatedDeliveryDate,
       'estimatedDeliveryTime': estimatedDeliveryTime,
       'billAmount': billAmount,
       'discount': discount,
@@ -144,7 +145,7 @@ class DiagnosisOrderModel {
           : null,
       deliveryDate: map['deliveryDate'],
       deliveryTime: map['deliveryTime'],
-      esimatedDeliveryDate: map['esimatedDeliveryDate'],
+      estimatedDeliveryDate: map['estimatedDeliveryDate'],
       estimatedDeliveryTime: map['estimatedDeliveryTime'],
       billAmount: map['billAmount'],
       discount: map['discount'],
@@ -163,7 +164,7 @@ class DiagnosisOrderModel {
 
   @override
   String toString() {
-    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
+    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
   }
 
   @override
@@ -181,7 +182,7 @@ class DiagnosisOrderModel {
         other.paymentInfo == paymentInfo &&
         other.deliveryDate == deliveryDate &&
         other.deliveryTime == deliveryTime &&
-        other.esimatedDeliveryDate == esimatedDeliveryDate &&
+        other.estimatedDeliveryDate == estimatedDeliveryDate &&
         other.estimatedDeliveryTime == estimatedDeliveryTime &&
         other.billAmount == billAmount &&
         other.discount == discount &&
@@ -204,7 +205,7 @@ class DiagnosisOrderModel {
         paymentInfo.hashCode ^
         deliveryDate.hashCode ^
         deliveryTime.hashCode ^
-        esimatedDeliveryDate.hashCode ^
+        estimatedDeliveryDate.hashCode ^
         estimatedDeliveryTime.hashCode ^
         billAmount.hashCode ^
         discount.hashCode ^
