@@ -10,7 +10,7 @@ import 'package:healthshared/models/paymentModel.dart';
 class DiagnosisOrderModel {
   final String? diagnosisOrderId;
   final String? diagnosisName;
-  final String prescriptionURL;
+  final String? prescriptionURL;
   final String? diagnosianID;
   final String? diagnosisOrderStatus;
   final String? userId;
@@ -31,7 +31,7 @@ class DiagnosisOrderModel {
   DiagnosisOrderModel({
     this.diagnosisOrderId,
     this.diagnosisName,
-    required this.prescriptionURL,
+    this.prescriptionURL,
     this.diagnosianID,
     this.diagnosisOrderStatus,
     this.userId,
@@ -98,41 +98,77 @@ class DiagnosisOrderModel {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'diagnosisOrderId': diagnosisOrderId,
-      'diagnosisName': diagnosisName,
-      'prescriptionURL': prescriptionURL,
-      'diagnosianID': diagnosianID,
-      'diagnosisOrderStatus': diagnosisOrderStatus,
-      'userId': userId,
-      'diagnosisOrderAddress':
-          diagnosisOrderAddress?.map((x) => x?.toMap()).toList(),
-      'paymentInfo': paymentInfo?.toMap(),
-      'deliveryDate': deliveryDate,
-      'deliveryTime': deliveryTime,
-      'estimatedDeliveryDate': estimatedDeliveryDate,
-      'estimatedDeliveryTime': estimatedDeliveryTime,
-      'billAmount': billAmount,
-      'discount': discount,
-      'netPayable': netPayable,
-      'name': name,
-      'paymentStatus': paymentStatus,
-      'orderDateTime': orderDateTime?.millisecondsSinceEpoch,
-      'cancellationNote': cancellationNote,
-    };
+    final result = <String, dynamic>{};
+
+    if (diagnosisOrderId != null) {
+      result.addAll({'diagnosisOrderId': diagnosisOrderId});
+    }
+    if (diagnosisName != null) {
+      result.addAll({'diagnosisName': diagnosisName});
+    }
+    if (prescriptionURL != null) {
+      result.addAll({'prescriptionURL': prescriptionURL});
+    }
+    if (diagnosianID != null) {
+      result.addAll({'diagnosianID': diagnosianID});
+    }
+    if (diagnosisOrderStatus != null) {
+      result.addAll({'diagnosisOrderStatus': diagnosisOrderStatus});
+    }
+    if (userId != null) {
+      result.addAll({'userId': userId});
+    }
+    if (diagnosisOrderAddress != null) {
+      result.addAll({
+        'diagnosisOrderAddress':
+            diagnosisOrderAddress!.map((x) => x?.toMap()).toList()
+      });
+    }
+    if (paymentInfo != null) {
+      result.addAll({'paymentInfo': paymentInfo!.toMap()});
+    }
+    if (deliveryDate != null) {
+      result.addAll({'deliveryDate': deliveryDate});
+    }
+    if (deliveryTime != null) {
+      result.addAll({'deliveryTime': deliveryTime});
+    }
+    if (estimatedDeliveryDate != null) {
+      result.addAll({'estimatedDeliveryDate': estimatedDeliveryDate});
+    }
+    if (estimatedDeliveryTime != null) {
+      result.addAll({'estimatedDeliveryTime': estimatedDeliveryTime});
+    }
+    if (billAmount != null) {
+      result.addAll({'billAmount': billAmount});
+    }
+    if (discount != null) {
+      result.addAll({'discount': discount});
+    }
+    if (netPayable != null) {
+      result.addAll({'netPayable': netPayable});
+    }
+    if (name != null) {
+      result.addAll({'name': name});
+    }
+    if (paymentStatus != null) {
+      result.addAll({'paymentStatus': paymentStatus});
+    }
+    if (orderDateTime != null) {
+      result.addAll({'orderDateTime': orderDateTime!.millisecondsSinceEpoch});
+    }
+    if (cancellationNote != null) {
+      result.addAll({'cancellationNote': cancellationNote});
+    }
+
+    return result;
   }
 
   factory DiagnosisOrderModel.fromMap(Map<String, dynamic> map) {
-    DateTime? orderDateTime;
-    if (map['orderDateTime'] != null) {
-      Timestamp orderDateTimeTimeStamp = map['orderDateTime'];
-      orderDateTime = DateTime.fromMillisecondsSinceEpoch(
-          orderDateTimeTimeStamp.seconds * 1000);
-    }
     return DiagnosisOrderModel(
       diagnosisOrderId: map['diagnosisOrderId'],
       diagnosisName: map['diagnosisName'],
-      prescriptionURL: map['prescriptionURL'] ?? '',
+      prescriptionURL: map['prescriptionURL'],
       diagnosianID: map['diagnosianID'],
       diagnosisOrderStatus: map['diagnosisOrderStatus'],
       userId: map['userId'],
@@ -152,7 +188,9 @@ class DiagnosisOrderModel {
       netPayable: map['netPayable'],
       name: map['name'],
       paymentStatus: map['paymentStatus'],
-      orderDateTime: orderDateTime,
+      orderDateTime: map['orderDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['orderDateTime'])
+          : null,
       cancellationNote: map['cancellationNote'],
     );
   }
