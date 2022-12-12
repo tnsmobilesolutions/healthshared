@@ -10,7 +10,7 @@ import 'package:healthshared/models/paymentModel.dart';
 class DiagnosisOrderModel {
   final String? diagnosisOrderId;
   final String? diagnosisName;
-  final String prescriptionURL;
+  final String? prescriptionURL;
   final String? diagnosianID;
   final String? diagnosisOrderStatus;
   final String? userId;
@@ -31,7 +31,7 @@ class DiagnosisOrderModel {
   DiagnosisOrderModel({
     this.diagnosisOrderId,
     this.diagnosisName,
-    required this.prescriptionURL,
+    this.prescriptionURL,
     this.diagnosianID,
     this.diagnosisOrderStatus,
     this.userId,
@@ -132,7 +132,7 @@ class DiagnosisOrderModel {
     return DiagnosisOrderModel(
       diagnosisOrderId: map['diagnosisOrderId'],
       diagnosisName: map['diagnosisName'],
-      prescriptionURL: map['prescriptionURL'] ?? '',
+      prescriptionURL: map['prescriptionURL'],
       diagnosianID: map['diagnosianID'],
       diagnosisOrderStatus: map['diagnosisOrderStatus'],
       userId: map['userId'],
