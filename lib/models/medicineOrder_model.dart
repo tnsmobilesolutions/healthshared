@@ -16,7 +16,8 @@ class MedicineOrder {
   String? discount;
   String? netPayable;
   String? name;
-  String? paymentStatus;
+  String? paymentMode;
+  String? medicinebillURL;
   String? orderStatus;
   String? orderDate;
   String? orderId;
@@ -37,7 +38,8 @@ class MedicineOrder {
     this.discount,
     this.netPayable,
     this.name,
-    this.paymentStatus,
+    this.paymentMode,
+    this.medicinebillURL,
     this.orderStatus,
     this.orderDate,
     this.orderId,
@@ -60,7 +62,8 @@ class MedicineOrder {
     String? discount,
     String? netPayable,
     String? name,
-    String? paymentStatus,
+    String? paymentMode,
+    String? medicinebillURL,
     String? orderStatus,
     String? orderDate,
     String? orderId,
@@ -83,7 +86,8 @@ class MedicineOrder {
       discount: discount ?? this.discount,
       netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
-      paymentStatus: paymentStatus ?? this.paymentStatus,
+      paymentMode: paymentMode ?? this.paymentMode,
+      medicinebillURL: medicinebillURL ?? this.medicinebillURL,
       orderStatus: orderStatus ?? this.orderStatus,
       orderDate: orderDate ?? this.orderDate,
       orderId: orderId ?? this.orderId,
@@ -129,8 +133,11 @@ class MedicineOrder {
     if (name != null) {
       result.addAll({'name': name});
     }
-    if (paymentStatus != null) {
-      result.addAll({'paymentStatus': paymentStatus});
+    if (paymentMode != null) {
+      result.addAll({'paymentMode': paymentMode});
+    }
+    if (medicinebillURL != null) {
+      result.addAll({'medicinebillURL': medicinebillURL});
     }
     if (orderStatus != null) {
       result.addAll({'orderStatus': orderStatus});
@@ -175,7 +182,8 @@ class MedicineOrder {
       discount: map['discount'],
       netPayable: map['netPayable'],
       name: map['name'],
-      paymentStatus: map['paymentStatus'],
+      paymentMode: map['paymentMode'],
+      medicinebillURL: map['medicinebillURL'],
       orderStatus: map['orderStatus'],
       orderDate: map['orderDate'],
       orderId: map['orderId'],
@@ -197,7 +205,7 @@ class MedicineOrder {
 
   @override
   String toString() {
-    return 'MedicineOrder(address: $address, medicineType: $medicineType, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
+    return 'MedicineOrder(address: $address, medicineType: $medicineType, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentMode: $paymentMode, medicinebillURL: $medicinebillURL, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
   }
 
   @override
@@ -215,7 +223,8 @@ class MedicineOrder {
         other.discount == discount &&
         other.netPayable == netPayable &&
         other.name == name &&
-        other.paymentStatus == paymentStatus &&
+        other.paymentMode == paymentMode &&
+        other.medicinebillURL == medicinebillURL &&
         other.orderStatus == orderStatus &&
         other.orderDate == orderDate &&
         other.orderId == orderId &&
@@ -239,7 +248,8 @@ class MedicineOrder {
         discount.hashCode ^
         netPayable.hashCode ^
         name.hashCode ^
-        paymentStatus.hashCode ^
+        paymentMode.hashCode ^
+        medicinebillURL.hashCode ^
         orderStatus.hashCode ^
         orderDate.hashCode ^
         orderId.hashCode ^
