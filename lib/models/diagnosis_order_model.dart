@@ -20,12 +20,12 @@ class DiagnosisOrderModel {
   final String? deliveryTime;
   final String? estimatedDeliveryDate;
   final String? estimatedDeliveryTime;
- 
+
   final String? discount;
   final String? netPayable;
   final String? name;
- 
-  final DateTime? orderDateTime;
+
+  final String? orderDateTime;
   final String? cancellationNote;
 
   DiagnosisOrderModel({
@@ -64,7 +64,7 @@ class DiagnosisOrderModel {
     String? discount,
     String? netPayable,
     String? name,
-    DateTime? orderDateTime,
+    String? orderDateTime,
     String? cancellationNote,
   }) {
     return DiagnosisOrderModel(
@@ -74,12 +74,15 @@ class DiagnosisOrderModel {
       diagnosianID: diagnosianID ?? this.diagnosianID,
       diagnosisOrderStatus: diagnosisOrderStatus ?? this.diagnosisOrderStatus,
       userId: userId ?? this.userId,
-      diagnosisOrderAddress: diagnosisOrderAddress ?? this.diagnosisOrderAddress,
+      diagnosisOrderAddress:
+          diagnosisOrderAddress ?? this.diagnosisOrderAddress,
       paymentInfo: paymentInfo ?? this.paymentInfo,
       deliveryDate: deliveryDate ?? this.deliveryDate,
       deliveryTime: deliveryTime ?? this.deliveryTime,
-      estimatedDeliveryDate: estimatedDeliveryDate ?? this.estimatedDeliveryDate,
-      estimatedDeliveryTime: estimatedDeliveryTime ?? this.estimatedDeliveryTime,
+      estimatedDeliveryDate:
+          estimatedDeliveryDate ?? this.estimatedDeliveryDate,
+      estimatedDeliveryTime:
+          estimatedDeliveryTime ?? this.estimatedDeliveryTime,
       discount: discount ?? this.discount,
       netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
@@ -89,61 +92,26 @@ class DiagnosisOrderModel {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-  
-    if(diagnosisOrderId != null){
-      result.addAll({'diagnosisOrderId': diagnosisOrderId});
-    }
-    if(diagnosisName != null){
-      result.addAll({'diagnosisName': diagnosisName});
-    }
-    if(prescriptionURL != null){
-      result.addAll({'prescriptionURL': prescriptionURL});
-    }
-    if(diagnosianID != null){
-      result.addAll({'diagnosianID': diagnosianID});
-    }
-    if(diagnosisOrderStatus != null){
-      result.addAll({'diagnosisOrderStatus': diagnosisOrderStatus});
-    }
-    if(userId != null){
-      result.addAll({'userId': userId});
-    }
-    if(diagnosisOrderAddress != null){
-      result.addAll({'diagnosisOrderAddress': diagnosisOrderAddress!.map((x) => x?.toMap()).toList()});
-    }
-    if(paymentInfo != null){
-      result.addAll({'paymentInfo': paymentInfo!.toMap()});
-    }
-    if(deliveryDate != null){
-      result.addAll({'deliveryDate': deliveryDate});
-    }
-    if(deliveryTime != null){
-      result.addAll({'deliveryTime': deliveryTime});
-    }
-    if(estimatedDeliveryDate != null){
-      result.addAll({'estimatedDeliveryDate': estimatedDeliveryDate});
-    }
-    if(estimatedDeliveryTime != null){
-      result.addAll({'estimatedDeliveryTime': estimatedDeliveryTime});
-    }
-    if(discount != null){
-      result.addAll({'discount': discount});
-    }
-    if(netPayable != null){
-      result.addAll({'netPayable': netPayable});
-    }
-    if(name != null){
-      result.addAll({'name': name});
-    }
-    if(orderDateTime != null){
-      result.addAll({'orderDateTime': orderDateTime!.millisecondsSinceEpoch});
-    }
-    if(cancellationNote != null){
-      result.addAll({'cancellationNote': cancellationNote});
-    }
-  
-    return result;
+    return {
+      'diagnosisOrderId': diagnosisOrderId,
+      'diagnosisName': diagnosisName,
+      'prescriptionURL': prescriptionURL,
+      'diagnosianID': diagnosianID,
+      'diagnosisOrderStatus': diagnosisOrderStatus,
+      'userId': userId,
+      'diagnosisOrderAddress':
+          diagnosisOrderAddress?.map((x) => x?.toMap()).toList(),
+      'paymentInfo': paymentInfo?.toMap(),
+      'deliveryDate': deliveryDate,
+      'deliveryTime': deliveryTime,
+      'estimatedDeliveryDate': estimatedDeliveryDate,
+      'estimatedDeliveryTime': estimatedDeliveryTime,
+      'discount': discount,
+      'netPayable': netPayable,
+      'name': name,
+      'orderDateTime': orderDateTime,
+      'cancellationNote': cancellationNote,
+    };
   }
 
   factory DiagnosisOrderModel.fromMap(Map<String, dynamic> map) {
@@ -154,8 +122,13 @@ class DiagnosisOrderModel {
       diagnosianID: map['diagnosianID'],
       diagnosisOrderStatus: map['diagnosisOrderStatus'],
       userId: map['userId'],
-      diagnosisOrderAddress: map['diagnosisOrderAddress'] != null ? List<Address?>.from(map['diagnosisOrderAddress']?.map((x) => Address?.fromMap(x))) : null,
-      paymentInfo: map['paymentInfo'] != null ? PaymentModel.fromMap(map['paymentInfo']) : null,
+      diagnosisOrderAddress: map['diagnosisOrderAddress'] != null
+          ? List<Address?>.from(
+              map['diagnosisOrderAddress']?.map((x) => Address?.fromMap(x)))
+          : null,
+      paymentInfo: map['paymentInfo'] != null
+          ? PaymentModel.fromMap(map['paymentInfo'])
+          : null,
       deliveryDate: map['deliveryDate'],
       deliveryTime: map['deliveryTime'],
       estimatedDeliveryDate: map['estimatedDeliveryDate'],
@@ -163,7 +136,7 @@ class DiagnosisOrderModel {
       discount: map['discount'],
       netPayable: map['netPayable'],
       name: map['name'],
-      orderDateTime: map['orderDateTime'] != null ? DateTime.fromMillisecondsSinceEpoch(map['orderDateTime']) : null,
+      orderDateTime: map['orderDateTime'],
       cancellationNote: map['cancellationNote'],
     );
   }
@@ -181,45 +154,45 @@ class DiagnosisOrderModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is DiagnosisOrderModel &&
-      other.diagnosisOrderId == diagnosisOrderId &&
-      other.diagnosisName == diagnosisName &&
-      other.prescriptionURL == prescriptionURL &&
-      other.diagnosianID == diagnosianID &&
-      other.diagnosisOrderStatus == diagnosisOrderStatus &&
-      other.userId == userId &&
-      listEquals(other.diagnosisOrderAddress, diagnosisOrderAddress) &&
-      other.paymentInfo == paymentInfo &&
-      other.deliveryDate == deliveryDate &&
-      other.deliveryTime == deliveryTime &&
-      other.estimatedDeliveryDate == estimatedDeliveryDate &&
-      other.estimatedDeliveryTime == estimatedDeliveryTime &&
-      other.discount == discount &&
-      other.netPayable == netPayable &&
-      other.name == name &&
-      other.orderDateTime == orderDateTime &&
-      other.cancellationNote == cancellationNote;
+        other.diagnosisOrderId == diagnosisOrderId &&
+        other.diagnosisName == diagnosisName &&
+        other.prescriptionURL == prescriptionURL &&
+        other.diagnosianID == diagnosianID &&
+        other.diagnosisOrderStatus == diagnosisOrderStatus &&
+        other.userId == userId &&
+        listEquals(other.diagnosisOrderAddress, diagnosisOrderAddress) &&
+        other.paymentInfo == paymentInfo &&
+        other.deliveryDate == deliveryDate &&
+        other.deliveryTime == deliveryTime &&
+        other.estimatedDeliveryDate == estimatedDeliveryDate &&
+        other.estimatedDeliveryTime == estimatedDeliveryTime &&
+        other.discount == discount &&
+        other.netPayable == netPayable &&
+        other.name == name &&
+        other.orderDateTime == orderDateTime &&
+        other.cancellationNote == cancellationNote;
   }
 
   @override
   int get hashCode {
     return diagnosisOrderId.hashCode ^
-      diagnosisName.hashCode ^
-      prescriptionURL.hashCode ^
-      diagnosianID.hashCode ^
-      diagnosisOrderStatus.hashCode ^
-      userId.hashCode ^
-      diagnosisOrderAddress.hashCode ^
-      paymentInfo.hashCode ^
-      deliveryDate.hashCode ^
-      deliveryTime.hashCode ^
-      estimatedDeliveryDate.hashCode ^
-      estimatedDeliveryTime.hashCode ^
-      discount.hashCode ^
-      netPayable.hashCode ^
-      name.hashCode ^
-      orderDateTime.hashCode ^
-      cancellationNote.hashCode;
+        diagnosisName.hashCode ^
+        prescriptionURL.hashCode ^
+        diagnosianID.hashCode ^
+        diagnosisOrderStatus.hashCode ^
+        userId.hashCode ^
+        diagnosisOrderAddress.hashCode ^
+        paymentInfo.hashCode ^
+        deliveryDate.hashCode ^
+        deliveryTime.hashCode ^
+        estimatedDeliveryDate.hashCode ^
+        estimatedDeliveryTime.hashCode ^
+        discount.hashCode ^
+        netPayable.hashCode ^
+        name.hashCode ^
+        orderDateTime.hashCode ^
+        cancellationNote.hashCode;
   }
 }
