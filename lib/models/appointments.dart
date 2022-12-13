@@ -26,6 +26,13 @@ class Appointments {
       Appointments.fromMap(json.decode(source));
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
+    DateTime? slotDateTime;
+    if (map['slotDateTime'] != null) {
+      //List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
+      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
+      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
+          slotDateTimeTimeStamp.seconds * 1000);
+    }
     return Appointments(
       bookedByUser: map['bookedByUser'],
       cancellationReason: map['cancellationReason'],
