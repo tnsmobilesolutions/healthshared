@@ -20,11 +20,11 @@ class DiagnosisOrderModel {
   final String? deliveryTime;
   final String? estimatedDeliveryDate;
   final String? estimatedDeliveryTime;
-  final String? billAmount;
+
   final String? discount;
   final String? netPayable;
   final String? name;
-  final String? paymentStatus;
+
   final String? orderDateTime;
   final String? cancellationNote;
 
@@ -41,11 +41,9 @@ class DiagnosisOrderModel {
     this.deliveryTime,
     this.estimatedDeliveryDate,
     this.estimatedDeliveryTime,
-    this.billAmount,
     this.discount,
     this.netPayable,
     this.name,
-    this.paymentStatus,
     this.orderDateTime,
     this.cancellationNote,
   });
@@ -63,11 +61,9 @@ class DiagnosisOrderModel {
     String? deliveryTime,
     String? estimatedDeliveryDate,
     String? estimatedDeliveryTime,
-    String? billAmount,
     String? discount,
     String? netPayable,
     String? name,
-    String? paymentStatus,
     String? orderDateTime,
     String? cancellationNote,
   }) {
@@ -87,11 +83,9 @@ class DiagnosisOrderModel {
           estimatedDeliveryDate ?? this.estimatedDeliveryDate,
       estimatedDeliveryTime:
           estimatedDeliveryTime ?? this.estimatedDeliveryTime,
-      billAmount: billAmount ?? this.billAmount,
       discount: discount ?? this.discount,
       netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
-      paymentStatus: paymentStatus ?? this.paymentStatus,
       orderDateTime: orderDateTime ?? this.orderDateTime,
       cancellationNote: cancellationNote ?? this.cancellationNote,
     );
@@ -112,11 +106,9 @@ class DiagnosisOrderModel {
       'deliveryTime': deliveryTime,
       'estimatedDeliveryDate': estimatedDeliveryDate,
       'estimatedDeliveryTime': estimatedDeliveryTime,
-      'billAmount': billAmount,
       'discount': discount,
       'netPayable': netPayable,
       'name': name,
-      'paymentStatus': paymentStatus,
       'orderDateTime': orderDateTime,
       'cancellationNote': cancellationNote,
     };
@@ -141,11 +133,9 @@ class DiagnosisOrderModel {
       deliveryTime: map['deliveryTime'],
       estimatedDeliveryDate: map['estimatedDeliveryDate'],
       estimatedDeliveryTime: map['estimatedDeliveryTime'],
-      billAmount: map['billAmount'],
       discount: map['discount'],
       netPayable: map['netPayable'],
       name: map['name'],
-      paymentStatus: map['paymentStatus'],
       orderDateTime: map['orderDateTime'],
       cancellationNote: map['cancellationNote'],
     );
@@ -158,7 +148,7 @@ class DiagnosisOrderModel {
 
   @override
   String toString() {
-    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
+    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, discount: $discount, netPayable: $netPayable, name: $name, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
   }
 
   @override
@@ -178,11 +168,9 @@ class DiagnosisOrderModel {
         other.deliveryTime == deliveryTime &&
         other.estimatedDeliveryDate == estimatedDeliveryDate &&
         other.estimatedDeliveryTime == estimatedDeliveryTime &&
-        other.billAmount == billAmount &&
         other.discount == discount &&
         other.netPayable == netPayable &&
         other.name == name &&
-        other.paymentStatus == paymentStatus &&
         other.orderDateTime == orderDateTime &&
         other.cancellationNote == cancellationNote;
   }
@@ -201,11 +189,9 @@ class DiagnosisOrderModel {
         deliveryTime.hashCode ^
         estimatedDeliveryDate.hashCode ^
         estimatedDeliveryTime.hashCode ^
-        billAmount.hashCode ^
         discount.hashCode ^
         netPayable.hashCode ^
         name.hashCode ^
-        paymentStatus.hashCode ^
         orderDateTime.hashCode ^
         cancellationNote.hashCode;
   }

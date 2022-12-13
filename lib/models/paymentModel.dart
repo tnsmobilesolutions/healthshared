@@ -4,41 +4,46 @@ class PaymentModel {
   String? paymentID;
   int? amount;
   String? paymentTime;
-  String? status;
   String? errorDescription;
   String? errorCode;
   String? errorMessage;
   String? orderID;
+  String? paymentStatus;
+  String? paymentMode;
+
   PaymentModel({
     this.paymentID,
     this.amount,
     this.paymentTime,
-    this.status,
     this.errorDescription,
     this.errorCode,
     this.errorMessage,
     this.orderID,
+    this.paymentStatus,
+    this.paymentMode,
   });
 
   PaymentModel copyWith({
     String? paymentID,
     int? amount,
     String? paymentTime,
-    String? status,
     String? errorDescription,
     String? errorCode,
     String? errorMessage,
     String? orderID,
+    String? paymentStatus,
+    String? paymentMode,
   }) {
     return PaymentModel(
       paymentID: paymentID ?? this.paymentID,
       amount: amount ?? this.amount,
       paymentTime: paymentTime ?? this.paymentTime,
-      status: status ?? this.status,
       errorDescription: errorDescription ?? this.errorDescription,
       errorCode: errorCode ?? this.errorCode,
       errorMessage: errorMessage ?? this.errorMessage,
       orderID: orderID ?? this.orderID,
+      paymentStatus: paymentStatus ?? this.paymentStatus,
+      paymentMode: paymentMode ?? this.paymentMode,
     );
   }
 
@@ -54,9 +59,6 @@ class PaymentModel {
     if (paymentTime != null) {
       result.addAll({'paymentTime': paymentTime});
     }
-    if (status != null) {
-      result.addAll({'status': status});
-    }
     if (errorDescription != null) {
       result.addAll({'errorDescription': errorDescription});
     }
@@ -69,6 +71,12 @@ class PaymentModel {
     if (orderID != null) {
       result.addAll({'orderID': orderID});
     }
+    if (paymentStatus != null) {
+      result.addAll({'paymentStatus': paymentStatus});
+    }
+    if (paymentMode != null) {
+      result.addAll({'paymentMode': paymentMode});
+    }
 
     return result;
   }
@@ -78,11 +86,12 @@ class PaymentModel {
       paymentID: map['paymentID'],
       amount: map['amount']?.toInt(),
       paymentTime: map['paymentTime'],
-      status: map['status'],
       errorDescription: map['errorDescription'],
       errorCode: map['errorCode'],
       errorMessage: map['errorMessage'],
       orderID: map['orderID'],
+      paymentStatus: map['paymentStatus'],
+      paymentMode: map['paymentMode'],
     );
   }
 
@@ -93,7 +102,7 @@ class PaymentModel {
 
   @override
   String toString() {
-    return 'PaymentModel(paymentID: $paymentID, amount: $amount, paymentTime: $paymentTime, status: $status, errorDescription: $errorDescription, errorCode: $errorCode, errorMessage: $errorMessage, orderID: $orderID)';
+    return 'PaymentModel(paymentID: $paymentID, amount: $amount, paymentTime: $paymentTime, errorDescription: $errorDescription, errorCode: $errorCode, errorMessage: $errorMessage, orderID: $orderID, paymentStatus: $paymentStatus, paymentMode: $paymentMode)';
   }
 
   @override
@@ -104,11 +113,12 @@ class PaymentModel {
         other.paymentID == paymentID &&
         other.amount == amount &&
         other.paymentTime == paymentTime &&
-        other.status == status &&
         other.errorDescription == errorDescription &&
         other.errorCode == errorCode &&
         other.errorMessage == errorMessage &&
-        other.orderID == orderID;
+        other.orderID == orderID &&
+        other.paymentStatus == paymentStatus &&
+        other.paymentMode == paymentMode;
   }
 
   @override
@@ -116,10 +126,11 @@ class PaymentModel {
     return paymentID.hashCode ^
         amount.hashCode ^
         paymentTime.hashCode ^
-        status.hashCode ^
         errorDescription.hashCode ^
         errorCode.hashCode ^
         errorMessage.hashCode ^
-        orderID.hashCode;
+        orderID.hashCode ^
+        paymentStatus.hashCode ^
+        paymentMode.hashCode;
   }
 }

@@ -26,13 +26,6 @@ class Appointments {
       Appointments.fromMap(json.decode(source));
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
-    DateTime? slotDateTime;
-    if (map['slotDateTime'] != null) {
-      //List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
-      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          slotDateTimeTimeStamp.seconds * 1000);
-    }
     return Appointments(
       bookedByUser: map['bookedByUser'],
       cancellationReason: map['cancellationReason'],
@@ -41,7 +34,9 @@ class Appointments {
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       isCancelled: map['isCancelled'],
-      slotDateTime: slotDateTime,
+      slotDateTime: map['slotDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
+          : null,
       slotId: map['slotId'],
       reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
@@ -64,6 +59,7 @@ class Appointments {
   final String? reportURL;
   final String? problemInfo;
   final String? videoCallToken;
+
   final PaymentModel? paymentInfo;
 
   @override
