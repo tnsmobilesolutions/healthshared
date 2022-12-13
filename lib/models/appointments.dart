@@ -19,6 +19,7 @@ class Appointments {
     this.reportURL,
     this.problemInfo,
     this.videoCallToken,
+    this.paymentMode,
     required this.paymentInfo,
   });
 
@@ -26,13 +27,6 @@ class Appointments {
       Appointments.fromMap(json.decode(source));
 
   factory Appointments.fromMap(Map<String, dynamic> map) {
-    DateTime? slotDateTime;
-    if (map['slotDateTime'] != null) {
-      //List<dynamic> slotDateTimeTimeStamp = map['slotDateTime'];
-      Timestamp slotDateTimeTimeStamp = map['slotDateTime'];
-      slotDateTime = DateTime.fromMillisecondsSinceEpoch(
-          slotDateTimeTimeStamp.seconds * 1000);
-    }
     return Appointments(
       bookedByUser: map['bookedByUser'],
       cancellationReason: map['cancellationReason'],
@@ -41,11 +35,14 @@ class Appointments {
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       isCancelled: map['isCancelled'],
-      slotDateTime: slotDateTime,
+      slotDateTime: map['slotDateTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
+          : null,
       slotId: map['slotId'],
       reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
       videoCallToken: map['videoCallToken'],
+      paymentMode: map['paymentMode'],
       paymentInfo: map['paymentInfo'] != null
           ? PaymentModel.fromMap(map['paymentInfo'])
           : null,
@@ -64,6 +61,7 @@ class Appointments {
   final String? reportURL;
   final String? problemInfo;
   final String? videoCallToken;
+  final String? paymentMode;
   final PaymentModel? paymentInfo;
 
   @override
@@ -83,6 +81,7 @@ class Appointments {
         other.reportURL == reportURL &&
         other.problemInfo == problemInfo &&
         other.videoCallToken == videoCallToken &&
+        other.paymentMode == paymentMode &&
         other.paymentInfo == paymentInfo;
   }
 
@@ -100,12 +99,13 @@ class Appointments {
         reportURL.hashCode ^
         problemInfo.hashCode ^
         videoCallToken.hashCode ^
+        paymentMode.hashCode ^
         paymentInfo.hashCode;
   }
 
   @override
   String toString() {
-    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo, videoCallToken: $videoCallToken, paymentInfo: $paymentInfo)';
+    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo, videoCallToken: $videoCallToken, paymentMode: $paymentMode, paymentInfo: $paymentInfo)';
   }
 
   Appointments copyWith({
@@ -121,6 +121,7 @@ class Appointments {
     String? reportURL,
     String? problemInfo,
     String? videoCallToken,
+    String? paymentMode,
     PaymentModel? paymentInfo,
   }) {
     return Appointments(
@@ -136,6 +137,7 @@ class Appointments {
       reportURL: reportURL ?? this.reportURL,
       problemInfo: problemInfo ?? this.problemInfo,
       videoCallToken: videoCallToken ?? this.videoCallToken,
+      paymentMode: paymentMode ?? this.paymentMode,
       paymentInfo: paymentInfo ?? this.paymentInfo,
     );
   }
@@ -178,6 +180,9 @@ class Appointments {
     }
     if (videoCallToken != null) {
       result.addAll({'videoCallToken': videoCallToken});
+    }
+    if (paymentMode != null) {
+      result.addAll({'paymentMode': paymentMode});
     }
     if (paymentInfo != null) {
       result.addAll({'paymentInfo': paymentInfo!.toMap()});

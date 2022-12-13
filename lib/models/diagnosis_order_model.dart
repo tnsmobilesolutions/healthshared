@@ -24,7 +24,7 @@ class DiagnosisOrderModel {
   final String? discount;
   final String? netPayable;
   final String? name;
-  final String? paymentStatus;
+  final String? paymentMode;
   final DateTime? orderDateTime;
   final String? cancellationNote;
 
@@ -45,7 +45,7 @@ class DiagnosisOrderModel {
     this.discount,
     this.netPayable,
     this.name,
-    this.paymentStatus,
+    this.paymentMode,
     this.orderDateTime,
     this.cancellationNote,
   });
@@ -67,7 +67,7 @@ class DiagnosisOrderModel {
     String? discount,
     String? netPayable,
     String? name,
-    String? paymentStatus,
+    String? paymentMode,
     DateTime? orderDateTime,
     String? cancellationNote,
   }) {
@@ -91,7 +91,7 @@ class DiagnosisOrderModel {
       discount: discount ?? this.discount,
       netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
-      paymentStatus: paymentStatus ?? this.paymentStatus,
+      paymentMode: paymentMode ?? this.paymentMode,
       orderDateTime: orderDateTime ?? this.orderDateTime,
       cancellationNote: cancellationNote ?? this.cancellationNote,
     );
@@ -151,8 +151,8 @@ class DiagnosisOrderModel {
     if (name != null) {
       result.addAll({'name': name});
     }
-    if (paymentStatus != null) {
-      result.addAll({'paymentStatus': paymentStatus});
+    if (paymentMode != null) {
+      result.addAll({'paymentMode': paymentMode});
     }
     if (orderDateTime != null) {
       result.addAll({'orderDateTime': orderDateTime!.millisecondsSinceEpoch});
@@ -187,7 +187,7 @@ class DiagnosisOrderModel {
       discount: map['discount'],
       netPayable: map['netPayable'],
       name: map['name'],
-      paymentStatus: map['paymentStatus'],
+      paymentMode: map['paymentMode'],
       orderDateTime: map['orderDateTime'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['orderDateTime'])
           : null,
@@ -202,7 +202,7 @@ class DiagnosisOrderModel {
 
   @override
   String toString() {
-    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentStatus: $paymentStatus, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
+    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentMode: $paymentMode, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
   }
 
   @override
@@ -226,7 +226,7 @@ class DiagnosisOrderModel {
         other.discount == discount &&
         other.netPayable == netPayable &&
         other.name == name &&
-        other.paymentStatus == paymentStatus &&
+        other.paymentMode == paymentMode &&
         other.orderDateTime == orderDateTime &&
         other.cancellationNote == cancellationNote;
   }
@@ -249,7 +249,7 @@ class DiagnosisOrderModel {
         discount.hashCode ^
         netPayable.hashCode ^
         name.hashCode ^
-        paymentStatus.hashCode ^
+        paymentMode.hashCode ^
         orderDateTime.hashCode ^
         cancellationNote.hashCode;
   }
