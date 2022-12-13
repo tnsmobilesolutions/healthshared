@@ -12,11 +12,11 @@ class MedicineOrder {
   String? deliveryTime;
   String? esimatedDeliveryDate;
   String? estimatedDeliveryTime;
-  String? billAmount;
+
   String? discount;
   String? netPayable;
   String? name;
-  String? paymentMode;
+
   String? medicinebillURL;
   String? orderStatus;
   String? orderDate;
@@ -34,11 +34,9 @@ class MedicineOrder {
     this.deliveryTime,
     this.esimatedDeliveryDate,
     this.estimatedDeliveryTime,
-    this.billAmount,
     this.discount,
     this.netPayable,
     this.name,
-    this.paymentMode,
     this.medicinebillURL,
     this.orderStatus,
     this.orderDate,
@@ -58,11 +56,9 @@ class MedicineOrder {
     String? deliveryTime,
     String? esimatedDeliveryDate,
     String? estimatedDeliveryTime,
-    String? billAmount,
     String? discount,
     String? netPayable,
     String? name,
-    String? paymentMode,
     String? medicinebillURL,
     String? orderStatus,
     String? orderDate,
@@ -82,11 +78,9 @@ class MedicineOrder {
       esimatedDeliveryDate: esimatedDeliveryDate ?? this.esimatedDeliveryDate,
       estimatedDeliveryTime:
           estimatedDeliveryTime ?? this.estimatedDeliveryTime,
-      billAmount: billAmount ?? this.billAmount,
       discount: discount ?? this.discount,
       netPayable: netPayable ?? this.netPayable,
       name: name ?? this.name,
-      paymentMode: paymentMode ?? this.paymentMode,
       medicinebillURL: medicinebillURL ?? this.medicinebillURL,
       orderStatus: orderStatus ?? this.orderStatus,
       orderDate: orderDate ?? this.orderDate,
@@ -121,9 +115,6 @@ class MedicineOrder {
     if (estimatedDeliveryTime != null) {
       result.addAll({'estimatedDeliveryTime': estimatedDeliveryTime});
     }
-    if (billAmount != null) {
-      result.addAll({'billAmount': billAmount});
-    }
     if (discount != null) {
       result.addAll({'discount': discount});
     }
@@ -132,9 +123,6 @@ class MedicineOrder {
     }
     if (name != null) {
       result.addAll({'name': name});
-    }
-    if (paymentMode != null) {
-      result.addAll({'paymentMode': paymentMode});
     }
     if (medicinebillURL != null) {
       result.addAll({'medicinebillURL': medicinebillURL});
@@ -178,11 +166,9 @@ class MedicineOrder {
       deliveryTime: map['deliveryTime'],
       esimatedDeliveryDate: map['esimatedDeliveryDate'],
       estimatedDeliveryTime: map['estimatedDeliveryTime'],
-      billAmount: map['billAmount'],
       discount: map['discount'],
       netPayable: map['netPayable'],
       name: map['name'],
-      paymentMode: map['paymentMode'],
       medicinebillURL: map['medicinebillURL'],
       orderStatus: map['orderStatus'],
       orderDate: map['orderDate'],
@@ -205,7 +191,7 @@ class MedicineOrder {
 
   @override
   String toString() {
-    return 'MedicineOrder(address: $address, medicineType: $medicineType, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, billAmount: $billAmount, discount: $discount, netPayable: $netPayable, name: $name, paymentMode: $paymentMode, medicinebillURL: $medicinebillURL, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
+    return 'MedicineOrder(address: $address, medicineType: $medicineType, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, esimatedDeliveryDate: $esimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, discount: $discount, netPayable: $netPayable, name: $name, medicinebillURL: $medicinebillURL, orderStatus: $orderStatus, orderDate: $orderDate, orderId: $orderId, orderTime: $orderTime, cancellationNote: $cancellationNote, prescriptionURL: $prescriptionURL, userId: $userId, vendorId: $vendorId, paymentInfo: $paymentInfo)';
   }
 
   @override
@@ -219,11 +205,9 @@ class MedicineOrder {
         other.deliveryTime == deliveryTime &&
         other.esimatedDeliveryDate == esimatedDeliveryDate &&
         other.estimatedDeliveryTime == estimatedDeliveryTime &&
-        other.billAmount == billAmount &&
         other.discount == discount &&
         other.netPayable == netPayable &&
         other.name == name &&
-        other.paymentMode == paymentMode &&
         other.medicinebillURL == medicinebillURL &&
         other.orderStatus == orderStatus &&
         other.orderDate == orderDate &&
@@ -244,11 +228,9 @@ class MedicineOrder {
         deliveryTime.hashCode ^
         esimatedDeliveryDate.hashCode ^
         estimatedDeliveryTime.hashCode ^
-        billAmount.hashCode ^
         discount.hashCode ^
         netPayable.hashCode ^
         name.hashCode ^
-        paymentMode.hashCode ^
         medicinebillURL.hashCode ^
         orderStatus.hashCode ^
         orderDate.hashCode ^

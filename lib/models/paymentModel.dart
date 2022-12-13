@@ -9,6 +9,7 @@ class PaymentModel {
   String? errorMessage;
   String? orderID;
   String? paymentStatus;
+  String? paymentMode;
 
   PaymentModel({
     this.paymentID,
@@ -19,6 +20,7 @@ class PaymentModel {
     this.errorMessage,
     this.orderID,
     this.paymentStatus,
+    this.paymentMode,
   });
 
   PaymentModel copyWith({
@@ -30,6 +32,7 @@ class PaymentModel {
     String? errorMessage,
     String? orderID,
     String? paymentStatus,
+    String? paymentMode,
   }) {
     return PaymentModel(
       paymentID: paymentID ?? this.paymentID,
@@ -40,6 +43,7 @@ class PaymentModel {
       errorMessage: errorMessage ?? this.errorMessage,
       orderID: orderID ?? this.orderID,
       paymentStatus: paymentStatus ?? this.paymentStatus,
+      paymentMode: paymentMode ?? this.paymentMode,
     );
   }
 
@@ -70,6 +74,9 @@ class PaymentModel {
     if (paymentStatus != null) {
       result.addAll({'paymentStatus': paymentStatus});
     }
+    if (paymentMode != null) {
+      result.addAll({'paymentMode': paymentMode});
+    }
 
     return result;
   }
@@ -84,6 +91,7 @@ class PaymentModel {
       errorMessage: map['errorMessage'],
       orderID: map['orderID'],
       paymentStatus: map['paymentStatus'],
+      paymentMode: map['paymentMode'],
     );
   }
 
@@ -94,7 +102,7 @@ class PaymentModel {
 
   @override
   String toString() {
-    return 'PaymentModel(paymentID: $paymentID, amount: $amount, paymentTime: $paymentTime, errorDescription: $errorDescription, errorCode: $errorCode, errorMessage: $errorMessage, orderID: $orderID, paymentStatus: $paymentStatus)';
+    return 'PaymentModel(paymentID: $paymentID, amount: $amount, paymentTime: $paymentTime, errorDescription: $errorDescription, errorCode: $errorCode, errorMessage: $errorMessage, orderID: $orderID, paymentStatus: $paymentStatus, paymentMode: $paymentMode)';
   }
 
   @override
@@ -109,7 +117,8 @@ class PaymentModel {
         other.errorCode == errorCode &&
         other.errorMessage == errorMessage &&
         other.orderID == orderID &&
-        other.paymentStatus == paymentStatus;
+        other.paymentStatus == paymentStatus &&
+        other.paymentMode == paymentMode;
   }
 
   @override
@@ -121,6 +130,7 @@ class PaymentModel {
         errorCode.hashCode ^
         errorMessage.hashCode ^
         orderID.hashCode ^
-        paymentStatus.hashCode;
+        paymentStatus.hashCode ^
+        paymentMode.hashCode;
   }
 }
