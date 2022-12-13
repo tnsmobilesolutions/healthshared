@@ -25,7 +25,7 @@ class DiagnosisOrderModel {
   final String? netPayable;
   final String? name;
   final String? paymentStatus;
-  final DateTime? orderDateTime;
+  final String? orderDateTime;
   final String? cancellationNote;
 
   DiagnosisOrderModel({
@@ -68,7 +68,7 @@ class DiagnosisOrderModel {
     String? netPayable,
     String? name,
     String? paymentStatus,
-    DateTime? orderDateTime,
+    String? orderDateTime,
     String? cancellationNote,
   }) {
     return DiagnosisOrderModel(
@@ -98,70 +98,28 @@ class DiagnosisOrderModel {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (diagnosisOrderId != null) {
-      result.addAll({'diagnosisOrderId': diagnosisOrderId});
-    }
-    if (diagnosisName != null) {
-      result.addAll({'diagnosisName': diagnosisName});
-    }
-    if (prescriptionURL != null) {
-      result.addAll({'prescriptionURL': prescriptionURL});
-    }
-    if (diagnosianID != null) {
-      result.addAll({'diagnosianID': diagnosianID});
-    }
-    if (diagnosisOrderStatus != null) {
-      result.addAll({'diagnosisOrderStatus': diagnosisOrderStatus});
-    }
-    if (userId != null) {
-      result.addAll({'userId': userId});
-    }
-    if (diagnosisOrderAddress != null) {
-      result.addAll({
-        'diagnosisOrderAddress':
-            diagnosisOrderAddress!.map((x) => x?.toMap()).toList()
-      });
-    }
-    if (paymentInfo != null) {
-      result.addAll({'paymentInfo': paymentInfo!.toMap()});
-    }
-    if (deliveryDate != null) {
-      result.addAll({'deliveryDate': deliveryDate});
-    }
-    if (deliveryTime != null) {
-      result.addAll({'deliveryTime': deliveryTime});
-    }
-    if (estimatedDeliveryDate != null) {
-      result.addAll({'estimatedDeliveryDate': estimatedDeliveryDate});
-    }
-    if (estimatedDeliveryTime != null) {
-      result.addAll({'estimatedDeliveryTime': estimatedDeliveryTime});
-    }
-    if (billAmount != null) {
-      result.addAll({'billAmount': billAmount});
-    }
-    if (discount != null) {
-      result.addAll({'discount': discount});
-    }
-    if (netPayable != null) {
-      result.addAll({'netPayable': netPayable});
-    }
-    if (name != null) {
-      result.addAll({'name': name});
-    }
-    if (paymentStatus != null) {
-      result.addAll({'paymentStatus': paymentStatus});
-    }
-    if (orderDateTime != null) {
-      result.addAll({'orderDateTime': orderDateTime!.millisecondsSinceEpoch});
-    }
-    if (cancellationNote != null) {
-      result.addAll({'cancellationNote': cancellationNote});
-    }
-
-    return result;
+    return {
+      'diagnosisOrderId': diagnosisOrderId,
+      'diagnosisName': diagnosisName,
+      'prescriptionURL': prescriptionURL,
+      'diagnosianID': diagnosianID,
+      'diagnosisOrderStatus': diagnosisOrderStatus,
+      'userId': userId,
+      'diagnosisOrderAddress':
+          diagnosisOrderAddress?.map((x) => x?.toMap()).toList(),
+      'paymentInfo': paymentInfo?.toMap(),
+      'deliveryDate': deliveryDate,
+      'deliveryTime': deliveryTime,
+      'estimatedDeliveryDate': estimatedDeliveryDate,
+      'estimatedDeliveryTime': estimatedDeliveryTime,
+      'billAmount': billAmount,
+      'discount': discount,
+      'netPayable': netPayable,
+      'name': name,
+      'paymentStatus': paymentStatus,
+      'orderDateTime': orderDateTime,
+      'cancellationNote': cancellationNote,
+    };
   }
 
   factory DiagnosisOrderModel.fromMap(Map<String, dynamic> map) {
@@ -188,9 +146,7 @@ class DiagnosisOrderModel {
       netPayable: map['netPayable'],
       name: map['name'],
       paymentStatus: map['paymentStatus'],
-      orderDateTime: map['orderDateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['orderDateTime'])
-          : null,
+      orderDateTime: map['orderDateTime'],
       cancellationNote: map['cancellationNote'],
     );
   }
