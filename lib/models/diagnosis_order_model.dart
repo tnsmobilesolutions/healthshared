@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:healthshared/models/address_model.dart';
 import 'package:healthshared/models/paymentModel.dart';
 
@@ -20,13 +17,12 @@ class DiagnosisOrderModel {
   final String? deliveryTime;
   final String? estimatedDeliveryDate;
   final String? estimatedDeliveryTime;
-
   final String? discount;
   final String? netPayable;
   final String? name;
-
   final String? orderDateTime;
   final String? cancellationNote;
+  final String? diagnosisBillURL;
 
   DiagnosisOrderModel({
     this.diagnosisOrderId,
@@ -46,6 +42,7 @@ class DiagnosisOrderModel {
     this.name,
     this.orderDateTime,
     this.cancellationNote,
+    this.diagnosisBillURL,
   });
 
   DiagnosisOrderModel copyWith({
@@ -66,6 +63,7 @@ class DiagnosisOrderModel {
     String? name,
     String? orderDateTime,
     String? cancellationNote,
+    String? diagnosisBillURL,
   }) {
     return DiagnosisOrderModel(
       diagnosisOrderId: diagnosisOrderId ?? this.diagnosisOrderId,
@@ -88,6 +86,7 @@ class DiagnosisOrderModel {
       name: name ?? this.name,
       orderDateTime: orderDateTime ?? this.orderDateTime,
       cancellationNote: cancellationNote ?? this.cancellationNote,
+      diagnosisBillURL: diagnosisBillURL ?? this.diagnosisBillURL,
     );
   }
 
@@ -111,6 +110,7 @@ class DiagnosisOrderModel {
       'name': name,
       'orderDateTime': orderDateTime,
       'cancellationNote': cancellationNote,
+      'diagnosisBillURL': diagnosisBillURL,
     };
   }
 
@@ -138,6 +138,7 @@ class DiagnosisOrderModel {
       name: map['name'],
       orderDateTime: map['orderDateTime'],
       cancellationNote: map['cancellationNote'],
+      diagnosisBillURL: map['diagnosisBillURL'],
     );
   }
 
@@ -148,7 +149,7 @@ class DiagnosisOrderModel {
 
   @override
   String toString() {
-    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, discount: $discount, netPayable: $netPayable, name: $name, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote)';
+    return 'DiagnosisOrderModel(diagnosisOrderId: $diagnosisOrderId, diagnosisName: $diagnosisName, prescriptionURL: $prescriptionURL, diagnosianID: $diagnosianID, diagnosisOrderStatus: $diagnosisOrderStatus, userId: $userId, diagnosisOrderAddress: $diagnosisOrderAddress, paymentInfo: $paymentInfo, deliveryDate: $deliveryDate, deliveryTime: $deliveryTime, estimatedDeliveryDate: $estimatedDeliveryDate, estimatedDeliveryTime: $estimatedDeliveryTime, discount: $discount, netPayable: $netPayable, name: $name, orderDateTime: $orderDateTime, cancellationNote: $cancellationNote, diagnosisBillURL: $diagnosisBillURL)';
   }
 
   @override
@@ -172,7 +173,8 @@ class DiagnosisOrderModel {
         other.netPayable == netPayable &&
         other.name == name &&
         other.orderDateTime == orderDateTime &&
-        other.cancellationNote == cancellationNote;
+        other.cancellationNote == cancellationNote &&
+        other.diagnosisBillURL == diagnosisBillURL;
   }
 
   @override
@@ -193,6 +195,7 @@ class DiagnosisOrderModel {
         netPayable.hashCode ^
         name.hashCode ^
         orderDateTime.hashCode ^
-        cancellationNote.hashCode;
+        cancellationNote.hashCode ^
+        diagnosisBillURL.hashCode;
   }
 }

@@ -12,11 +12,9 @@ class MedicineOrder {
   String? deliveryTime;
   String? esimatedDeliveryDate;
   String? estimatedDeliveryTime;
-
   String? discount;
   String? netPayable;
   String? name;
-
   String? medicinebillURL;
   String? orderStatus;
   String? orderDate;
