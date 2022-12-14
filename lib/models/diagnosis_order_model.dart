@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+
 import 'package:healthshared/models/address_model.dart';
 import 'package:healthshared/models/paymentModel.dart';
 
@@ -23,7 +25,6 @@ class DiagnosisOrderModel {
   final String? orderDateTime;
   final String? cancellationNote;
   final String? diagnosisBillURL;
-
   DiagnosisOrderModel({
     this.diagnosisOrderId,
     this.diagnosisName,
@@ -91,27 +92,67 @@ class DiagnosisOrderModel {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'diagnosisOrderId': diagnosisOrderId,
-      'diagnosisName': diagnosisName,
-      'prescriptionURL': prescriptionURL,
-      'diagnosianID': diagnosianID,
-      'diagnosisOrderStatus': diagnosisOrderStatus,
-      'userId': userId,
-      'diagnosisOrderAddress':
-          diagnosisOrderAddress?.map((x) => x?.toMap()).toList(),
-      'paymentInfo': paymentInfo?.toMap(),
-      'deliveryDate': deliveryDate,
-      'deliveryTime': deliveryTime,
-      'estimatedDeliveryDate': estimatedDeliveryDate,
-      'estimatedDeliveryTime': estimatedDeliveryTime,
-      'discount': discount,
-      'netPayable': netPayable,
-      'name': name,
-      'orderDateTime': orderDateTime,
-      'cancellationNote': cancellationNote,
-      'diagnosisBillURL': diagnosisBillURL,
-    };
+    final result = <String, dynamic>{};
+
+    if (diagnosisOrderId != null) {
+      result.addAll({'diagnosisOrderId': diagnosisOrderId});
+    }
+    if (diagnosisName != null) {
+      result.addAll({'diagnosisName': diagnosisName});
+    }
+    if (prescriptionURL != null) {
+      result.addAll({'prescriptionURL': prescriptionURL});
+    }
+    if (diagnosianID != null) {
+      result.addAll({'diagnosianID': diagnosianID});
+    }
+    if (diagnosisOrderStatus != null) {
+      result.addAll({'diagnosisOrderStatus': diagnosisOrderStatus});
+    }
+    if (userId != null) {
+      result.addAll({'userId': userId});
+    }
+    if (diagnosisOrderAddress != null) {
+      result.addAll({
+        'diagnosisOrderAddress':
+            diagnosisOrderAddress!.map((x) => x?.toMap()).toList()
+      });
+    }
+    if (paymentInfo != null) {
+      result.addAll({'paymentInfo': paymentInfo!.toMap()});
+    }
+    if (deliveryDate != null) {
+      result.addAll({'deliveryDate': deliveryDate});
+    }
+    if (deliveryTime != null) {
+      result.addAll({'deliveryTime': deliveryTime});
+    }
+    if (estimatedDeliveryDate != null) {
+      result.addAll({'estimatedDeliveryDate': estimatedDeliveryDate});
+    }
+    if (estimatedDeliveryTime != null) {
+      result.addAll({'estimatedDeliveryTime': estimatedDeliveryTime});
+    }
+    if (discount != null) {
+      result.addAll({'discount': discount});
+    }
+    if (netPayable != null) {
+      result.addAll({'netPayable': netPayable});
+    }
+    if (name != null) {
+      result.addAll({'name': name});
+    }
+    if (orderDateTime != null) {
+      result.addAll({'orderDateTime': orderDateTime});
+    }
+    if (cancellationNote != null) {
+      result.addAll({'cancellationNote': cancellationNote});
+    }
+    if (diagnosisBillURL != null) {
+      result.addAll({'diagnosisBillURL': diagnosisBillURL});
+    }
+
+    return result;
   }
 
   factory DiagnosisOrderModel.fromMap(Map<String, dynamic> map) {
