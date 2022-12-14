@@ -84,7 +84,7 @@ class PaymentModel {
   factory PaymentModel.fromMap(Map<String, dynamic> map) {
     return PaymentModel(
       paymentID: map['paymentID'],
-      amount: map['amount'],
+      amount: int.tryParse(map['amount']),
       paymentTime: map['paymentTime'],
       errorDescription: map['errorDescription'],
       errorCode: map['errorCode'],
