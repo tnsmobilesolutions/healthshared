@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class PaymentModel {
   String? paymentID;
-  String? amount;
+  int? amount;
   String? paymentTime;
   String? errorDescription;
   String? errorCode;
@@ -25,7 +25,7 @@ class PaymentModel {
 
   PaymentModel copyWith({
     String? paymentID,
-    String? amount,
+    int? amount,
     String? paymentTime,
     String? errorDescription,
     String? errorCode,
@@ -84,7 +84,7 @@ class PaymentModel {
   factory PaymentModel.fromMap(Map<String, dynamic> map) {
     return PaymentModel(
       paymentID: map['paymentID'],
-      amount: map['amount'],
+      amount: map['amount']?.toInt(),
       paymentTime: map['paymentTime'],
       errorDescription: map['errorDescription'],
       errorCode: map['errorCode'],
