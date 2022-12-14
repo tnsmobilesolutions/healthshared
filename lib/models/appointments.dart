@@ -41,9 +41,7 @@ class Appointments {
       isAvailable: map['isAvailable'],
       isBooked: map['isBooked'],
       isCancelled: map['isCancelled'],
-      slotDateTime: map['slotDateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['slotDateTime'])
-          : null,
+      slotDateTime: slotDateTime,
       slotId: map['slotId'],
       reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
