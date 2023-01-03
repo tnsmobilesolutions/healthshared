@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class PaymentModel {
   String? paymentID;
-  int? amount;
+  String? amount;
   String? paymentTime;
   String? errorDescription;
   String? errorCode;
@@ -25,7 +25,7 @@ class PaymentModel {
 
   PaymentModel copyWith({
     String? paymentID,
-    int? amount,
+    String? amount,
     String? paymentTime,
     String? errorDescription,
     String? errorCode,
@@ -48,43 +48,23 @@ class PaymentModel {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (paymentID != null) {
-      result.addAll({'paymentID': paymentID});
-    }
-    if (amount != null) {
-      result.addAll({'amount': amount});
-    }
-    if (paymentTime != null) {
-      result.addAll({'paymentTime': paymentTime});
-    }
-    if (errorDescription != null) {
-      result.addAll({'errorDescription': errorDescription});
-    }
-    if (errorCode != null) {
-      result.addAll({'errorCode': errorCode});
-    }
-    if (errorMessage != null) {
-      result.addAll({'errorMessage': errorMessage});
-    }
-    if (orderID != null) {
-      result.addAll({'orderID': orderID});
-    }
-    if (paymentStatus != null) {
-      result.addAll({'paymentStatus': paymentStatus});
-    }
-    if (paymentMode != null) {
-      result.addAll({'paymentMode': paymentMode});
-    }
-
-    return result;
+    return {
+      'paymentID': paymentID,
+      'amount': amount,
+      'paymentTime': paymentTime,
+      'errorDescription': errorDescription,
+      'errorCode': errorCode,
+      'errorMessage': errorMessage,
+      'orderID': orderID,
+      'paymentStatus': paymentStatus,
+      'paymentMode': paymentMode,
+    };
   }
 
   factory PaymentModel.fromMap(Map<String, dynamic> map) {
     return PaymentModel(
       paymentID: map['paymentID'],
-      amount: map['amount'].toInt(),
+      amount: map['amount'],
       paymentTime: map['paymentTime'],
       errorDescription: map['errorDescription'],
       errorCode: map['errorCode'],
