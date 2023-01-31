@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:healthshared/models/paymentModel.dart';
 
@@ -18,7 +17,7 @@ class Appointments {
     this.slotId,
     this.reportURL,
     this.problemInfo,
-    this.videoCallToken,
+    this.meetingID,
     required this.paymentInfo,
   });
 
@@ -45,7 +44,7 @@ class Appointments {
       slotId: map['slotId'],
       reportURL: map['reportURL'],
       problemInfo: map['problemInfo'],
-      videoCallToken: map['videoCallToken'],
+      meetingID: map['meetingID'],
       paymentInfo: map['paymentInfo'] != null
           ? PaymentModel.fromMap(map['paymentInfo'])
           : null,
@@ -63,7 +62,7 @@ class Appointments {
   final String? slotId;
   final String? reportURL;
   final String? problemInfo;
-  final String? videoCallToken;
+  final String? meetingID;
 
   final PaymentModel? paymentInfo;
 
@@ -83,7 +82,7 @@ class Appointments {
         other.slotId == slotId &&
         other.reportURL == reportURL &&
         other.problemInfo == problemInfo &&
-        other.videoCallToken == videoCallToken &&
+        other.meetingID == meetingID &&
         other.paymentInfo == paymentInfo;
   }
 
@@ -100,13 +99,13 @@ class Appointments {
         slotId.hashCode ^
         reportURL.hashCode ^
         problemInfo.hashCode ^
-        videoCallToken.hashCode ^
+        meetingID.hashCode ^
         paymentInfo.hashCode;
   }
 
   @override
   String toString() {
-    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo, videoCallToken: $videoCallToken, paymentInfo: $paymentInfo)';
+    return 'Appointments(bookedByUser: $bookedByUser, cancellationReason: $cancellationReason, cancelledBy: $cancelledBy, doctorId: $doctorId, isAvailable: $isAvailable, isBooked: $isBooked, isCancelled: $isCancelled, slotDateTime: $slotDateTime, slotId: $slotId, reportURL: $reportURL, problemInfo: $problemInfo, meetingID: $meetingID, paymentInfo: $paymentInfo)';
   }
 
   Appointments copyWith({
@@ -121,7 +120,7 @@ class Appointments {
     String? slotId,
     String? reportURL,
     String? problemInfo,
-    String? videoCallToken,
+    String? meetingID,
     PaymentModel? paymentInfo,
   }) {
     return Appointments(
@@ -136,55 +135,27 @@ class Appointments {
       slotId: slotId ?? this.slotId,
       reportURL: reportURL ?? this.reportURL,
       problemInfo: problemInfo ?? this.problemInfo,
-      videoCallToken: videoCallToken ?? this.videoCallToken,
+      meetingID: meetingID ?? this.meetingID,
       paymentInfo: paymentInfo ?? this.paymentInfo,
     );
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    if (bookedByUser != null) {
-      result.addAll({'bookedByUser': bookedByUser});
-    }
-    if (cancellationReason != null) {
-      result.addAll({'cancellationReason': cancellationReason});
-    }
-    if (cancelledBy != null) {
-      result.addAll({'cancelledBy': cancelledBy});
-    }
-    if (doctorId != null) {
-      result.addAll({'doctorId': doctorId});
-    }
-    if (isAvailable != null) {
-      result.addAll({'isAvailable': isAvailable});
-    }
-    if (isBooked != null) {
-      result.addAll({'isBooked': isBooked});
-    }
-    if (isCancelled != null) {
-      result.addAll({'isCancelled': isCancelled});
-    }
-    if (slotDateTime != null) {
-      result.addAll({'slotDateTime': slotDateTime!.millisecondsSinceEpoch});
-    }
-    if (slotId != null) {
-      result.addAll({'slotId': slotId});
-    }
-    if (reportURL != null) {
-      result.addAll({'reportURL': reportURL});
-    }
-    if (problemInfo != null) {
-      result.addAll({'problemInfo': problemInfo});
-    }
-    if (videoCallToken != null) {
-      result.addAll({'videoCallToken': videoCallToken});
-    }
-    if (paymentInfo != null) {
-      result.addAll({'paymentInfo': paymentInfo!.toMap()});
-    }
-
-    return result;
+    return {
+      'bookedByUser': bookedByUser,
+      'cancellationReason': cancellationReason,
+      'cancelledBy': cancelledBy,
+      'doctorId': doctorId,
+      'isAvailable': isAvailable,
+      'isBooked': isBooked,
+      'isCancelled': isCancelled,
+      'slotDateTime': slotDateTime?.millisecondsSinceEpoch,
+      'slotId': slotId,
+      'reportURL': reportURL,
+      'problemInfo': problemInfo,
+      'meetingID': meetingID,
+      'paymentInfo': paymentInfo?.toMap(),
+    };
   }
 
   String toJson() => json.encode(toMap());
